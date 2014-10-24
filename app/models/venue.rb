@@ -1,2 +1,3 @@
 class Venue < User
+
 end
