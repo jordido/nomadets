@@ -1,0 +1,27 @@
+<h4>Users list</h4>
+<div>
+	<%= link_to "New User", new_user_path %>
+</div>
+
+<table class="table table_stripted">
+			<th>First name</th>
+			<th>Last name</th>
+			<th>Email</th>
+			<th>Address</th>
+			<th>City</th>
+			<th>Region</th>
+			<th>Country</th>
+			<th>Type</th>
+	<% @users.each do |u| %>
+		<tr>
+			<td><%= u.name %></td>
+			<td><%= u.last_name %></td>
+			<td><%= u.email %></td>
+			<td><%= u.address %></td>
+			<td><%= u.city %></td>
+			<td><%= u.region %></td>
+			<td><%= u.country %></td>
+			<td><%= u.type %></td>
+		</tr>
+	<% end %>
+</table>

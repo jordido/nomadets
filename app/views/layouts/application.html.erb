@@ -5,10 +5,31 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
 </head>
-<body>
 
-<%= yield %>
+<body>	
+ <div class="container">
+ 	<header>
+	 	<img src="/assets/nomadets_logo.jpg" id="logo" class="logo">
+	 	<div class="header-title">
+	  <h1>Welcome to Nomadets</h1>
+	  </div> 
+  </header>
+  	<nav class="navbar navbar-default" role="navigation">
+  	<div class="container-fluid">
+  		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+	  	
+					<li><%= link_to "Teachers", users_path %></li>
+					<li><%= link_to "Venues", users_path %></li>
+					<li><%= link_to "Students", users_path %></li>
+			</ul>
+			</div>
+		</div>
+		</nav>
 
+		<%= yield %>
+	</div>
 </body>
 </html>
