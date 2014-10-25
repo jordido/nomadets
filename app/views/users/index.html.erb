@@ -22,6 +22,8 @@
 			<td><%= u.region %></td>
 			<td><%= u.country %></td>
 			<td><%= u.type %></td>
+			<td><%= link_to "Edit", edit_user_path(u) %>
+			<%= link_to "Delete", user_path(u), method: :delete, data: { confirm: 'Are you sure?' } %></td>	
 		</tr>
 	<% end %>
 </table>

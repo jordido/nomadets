@@ -1,4 +1,11 @@
 class UsersController < ApplicationController
+
+	rescue_from Pundit::NotAuthorizedError, with: :deny_access
+
+  include Pundit
+
+	before_action :load_user, except: [:index, :new]
+
   def index
   	@users = User.all
   end
@@ -8,6 +15,7 @@ class UsersController < ApplicationController
   end
 
   def show
+#  	 authorize @user
   end
 
 	def create
@@ -24,9 +32,20 @@ class UsersController < ApplicationController
 	end
 
   def edit
+#  	 authorize @user
   end
+
+  def update
+  	 authorize @user
+  end
+  
+  private
 
   def user_params
   	params.require(:user).permit(:name, :last_name, :password_digest, :password_confirm, :email, :address, :type)
+  end
+
+  def load_user
+    @user = User.find(params[:id])
   end
 end
