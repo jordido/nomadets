@@ -8,19 +8,17 @@
 			<th>City</th>
 			<th>Region</th>
 			<th>Country</th>
-			<th>Type</th>
-	<% @user do |u| %>
+			<th>Type</th>	
 		<tr>
-			<td><%= u.name %></td>
-			<td><%= u.last_name %></td>
-			<td><%= u.email %></td>
-			<td><%= u.address %></td>
-			<td><%= u.city %></td>
-			<td><%= u.region %></td>
-			<td><%= u.country %></td>
-			<td><%= u.type %></td>
+			<td><%= @user.name %></td>
+			<td><%= @user.last_name %></td>
+			<td><%= @user.email %></td>
+			<td><%= @user.address %></td>
+			<td><%= @user.city %></td>
+			<td><%= @user.region %></td>
+			<td><%= @user.country %></td>
+			<td><%= @user.type %></td>
 		</tr>
-	<% end %>
 </table>
 <br/>
 <%= link_to "Back", users_path %>

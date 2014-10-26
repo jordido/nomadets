@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   include Pundit
 
-	before_action :load_user, except: [:index, :new]
+	#before_action :load_user, except: [:index, :new]
 
   def index
   	@users = User.all
@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
 #  	 authorize @user
   end
 
@@ -32,6 +33,7 @@ class UsersController < ApplicationController
 	end
 
   def edit
+    @user = User.find(params[:id])
 #  	 authorize @user
   end
 
@@ -39,13 +41,19 @@ class UsersController < ApplicationController
   	 authorize @user
   end
   
-  private
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to users_url
+  end
+  
 
   def user_params
   	params.require(:user).permit(:name, :last_name, :password_digest, :password_confirm, :email, :address, :type)
   end
 
   def load_user
+
     @user = User.find(params[:id])
   end
 end

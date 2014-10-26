@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  resources :users, only: [:create, :index, :show, :edit, :update, :new]
+  resources :users, only: [:create, :index, :show, :edit, :update, :new, :destroy]
   
   #root 'users#index'
 
@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   post   "/login",  to: "login#create"
   delete "/logout", to: "login#destroy"
+
+  get 'users/:id' => 'users#show'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
