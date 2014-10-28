@@ -23,8 +23,17 @@
 			<td><%= u.country %></td>
 			<td><%= u.type %></td>
 		</tr>
-		<tr>
-			<td><%= reviewed_by(u.id) %></td>
-		</tr>
+
+			<%	u.reviews_by.each do |r| %>
+			<tr>
+				<td>
+						<%= r.comment %>
+				</td>
+				<td>
+					<%= r.reviewed.name %>
+				</td>
+			</tr>
+			<% end %>
+
 	<% end %>
 </table>
