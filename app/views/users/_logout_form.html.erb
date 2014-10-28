@@ -1,0 +1,10 @@
+<%= form_tag logout_path, method: :delete, :class => "navbar-form navbar-right", :role => "search" do %>
+	<div class="form-group">
+	You're logged as <%= current_user.name %>	
+	</div>
+  <%= submit_tag "Logout", :class => "btn btn-default" %>
+<% end %>
+
+
+
+   

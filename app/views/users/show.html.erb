@@ -1,2 +1,24 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1>User</h1>
+
+<table class="table table_stripted">
+			<th>First name</th>
+			<th>Last name</th>
+			<th>Email</th>
+			<th>Address</th>
+			<th>City</th>
+			<th>Region</th>
+			<th>Country</th>
+			<th>Type</th>	
+		<tr>
+			<td><%= @user.name %></td>
+			<td><%= @user.last_name %></td>
+			<td><%= @user.email %></td>
+			<td><%= @user.address %></td>
+			<td><%= @user.city %></td>
+			<td><%= @user.region %></td>
+			<td><%= @user.country %></td>
+			<td><%= @user.type %></td>
+		</tr>
+</table>
+<br/>
+<%= link_to "Back", users_path %>
