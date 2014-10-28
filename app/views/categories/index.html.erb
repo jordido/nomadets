@@ -1,0 +1,19 @@
+<h4>Categories list</h4>
+<div>
+	<%= link_to "New category", new_category_path %>
+</div>
+
+<table class="table table_stripted">
+	<th>Name</th>
+	<th>Parent Category</th>
+	<th>Icon</th>
+	<% @categories.each do |c| %>
+		<tr>
+			<td><%= c.name %></td>
+			<td><%= c.parent_category.name if c.parent_category %></td>
+			<td><%= c.icon %></td>
+			<td><%= link_to "Edit", edit_category_path(c) %>
+			<%= link_to "Delete", category_path(c), method: :delete, data: { confirm: 'Are you sure?' } %></td>	
+		</tr>
+	<% end %>
+</table>

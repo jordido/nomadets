@@ -1,26 +1,26 @@
 class RegistrationsController < ApplicationController
   def new
-    @user = User.new
+    @cat = Cat.new
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      # userMailer.delay(run_at: 1.minute.from_now).welcome(@user)
+    @cat = Cat.new(cat_params)
+    if @cat.save
+      CatMailer.delay(run_at: 1.minute.from_now).welcome(@cat)
 
-      redirect_to users_path
+      redirect_to cats_path
     else
       render :new
     end
-  rescue ActiveRecord::RecordNotUnique
-    @user.errors.add(:email, "There is already a user with this email")
+    rescue ActiveRecord::RecordNotUnique
+    @cat.errors.add(:email, "There is already a user with this email")
 
     render :new
   end
 
   private
 
-  def user_params
-    params.require(:user).permit(:name, :last_name, :password_digest, :password_confirm, :email, :address, :type)
+  def cat_params
+    params.require(:cat).permit(:name, :email, :password, :password_confirmation)
   end
 end

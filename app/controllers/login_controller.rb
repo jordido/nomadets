@@ -1,8 +1,8 @@
 # http://api.rubyonrails.org/classes/ActiveModel/SecurePassword/ClassMethods.html
 class LoginController < ApplicationController
   def create
-    user = user.where(email: params[:email]).first
-
+    user = User.where(email: params[:email]).first
+    debugger
     # Session engaged
     if user && user.authenticate(params[:password])
       flash[:success] = "Login sucessful! Welcome #{user.name}!"

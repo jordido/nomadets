@@ -1,0 +1,31 @@
+<%= form_for @category do |c| %>
+
+<!-- See validation errors   
+	<% @category.errors.inspect %> -->
+		<% if @category.errors.any? %>
+			<% @category.errors.full_messages.each do |message| %>
+				<%= message %>
+			<% end %>
+		<% end %>
+	<div class="container-fluid">
+	<div class="form-group">
+	<%= c.label :name %>
+	<%= c.text_field :name, class: "form-control", placeholder: "Name of category " %>
+	</div>
+	<div class="form-group">
+	<%= c.label :icon %>
+	<%= c.text_field :icon, class: "form-control", placeholder: "icon url" %>
+	</div>
+	<div class="form-group">
+	<%= c.label :parent_category %>
+	<%= c.select :parent_id, Category.all.collect{ |c| [c.name, c.id]}%>
+	</div>
+	<div>
+	<%= c.submit class: "btn btn-success"%>
+	</div>
+<% end %>
+
+<!-- parentesis are optional for passing the parameters. Keep in mind to understand the code!!!! -->
+
+<%= link_to("Back", categories_path) %>
+

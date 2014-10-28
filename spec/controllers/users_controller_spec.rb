@@ -18,14 +18,14 @@ RSpec.describe UsersController, :type => :controller do
 
   describe "GET show" do
     it "returns http success" do
-      get :show, id: 1
+      get :show, id: 2
       expect(response).to be_success
     end
   end
 
   describe "GET edit" do
     it "returns http success" do
-      get :edit, id: 1
+      get :edit, id: 2
       expect(response).to be_success
     end
   end
