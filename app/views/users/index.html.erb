@@ -23,5 +23,8 @@
 			<td><%= u.country %></td>
 			<td><%= u.type %></td>
 		</tr>
+		<tr>
+			<td><%= reviewed_by(u.id) %></td>
+		</tr>
 	<% end %>
 </table>

@@ -1,6 +1,7 @@
 class Review < ActiveRecord::Base
-	belongs_to :creator, class_name: "User", foreign_key: "creator_id"
-	belongs_to :referred, class_name: "User", foreign_key: "referred_id"
+	belongs_to :author, class_name: "User", foreign_key: "author_id"
+	belongs_to :reviewed, class_name: "User", foreign_key: "reviewed_id"
 	belongs_to :course
-	validates_presence_of :rating, :creator_id
+	validates_presence_of :rating, :author_id
+	validates :rating, :inclusion => 0..5
 end

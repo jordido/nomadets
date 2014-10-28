@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   resources :users, only: [:create, :index, :show, :edit, :update, :new]
   
   root 'users#index'
+  get 'teachers' => 'users#teachers'
+  get 'students' => 'users#students'
+  get 'venues' => 'users#venues'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

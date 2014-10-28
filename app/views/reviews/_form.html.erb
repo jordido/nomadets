@@ -1,45 +1,32 @@
-<%= form_for @user do |u| %>
-
-<!-- See validation errors   
-	<% @user.errors.inspect %> -->
-		<% if @user.errors.any? %>
-			<% @user.errors.full_messages.each do |message| %>
-				<%= message %>
-			<% end %>
+<%= form_for @review do |r| %>
+	<% if @review.errors.any? %>
+		<% @review.errors.full_messages.each do |message| %>
+			<%= message %>
 		<% end %>
+	<% end %>
 	<div class="container-fluid">
 	<div class="form-group">
-	<%= u.label :name %>
-	<%= u.text_field :name, class: "form-control", placeholder: "First name " %>
+		<%= r.label :author %>
+		<%= r.select :author_id, User.all.collect{ |u| [u.name, u.id]}%>
 	</div>
 	<div class="form-group">
-	<%= u.label :last_name %>
-	<%= u.text_field :last_name, class: "form-control", placeholder: "Last name " %>
+		<%= r.label :reviewed %>
+		<%= r.select :reviewed_id, User.all.collect{ |u| [u.name, u.id]}%>
 	</div>
 	<div class="form-group">
-	<%= u.label :email %>
-	<%= u.text_field :email, class: "form-control", placeholder: "Email" %>
+		<%= r.label :comment %>
+		<%= r.text_field :comment, class: "form-control", placeholder: "Comment" %>
 	</div>
 	<div class="form-group">
-	<%= u.label :password %>
-	<%= u.password_field :password_digest, class: "form-control", placeholder: "Password" %>
-	</div>
-	<div class="form-group">
-	<%= u.label :repeat_password %>
-	<%= u.password_field :password_confirmation, class: "form-control", placeholder: "Password" %>
-	</div>
-	<div class="form-group">
-	<%= u.label :type %>
-	<%= u.select :type, User::TYPES.collect{ |t| [t]}%>
+		<%= r.label :rating %>
+		<%= r.number_field :rating, class: "form-control", placeholder: "Rating" %>
 	</div>
 	<div>
-	<%= u.submit class: "btn btn-success"%>
+		<%= r.submit class: "btn btn-success"%>
 	</div>
 	</div>
 
 <% end %>
-
-<!-- parentesis are optional for passing the parameters. Keep in mind to understand the code!!!! -->
 
 <%= link_to("Back", users_path) %>
 
