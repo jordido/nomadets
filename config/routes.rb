@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   #root 'registrations#new'
   
   # get  "/register", to: "registrations#new"
-  # post "/register", to: "registrations#create"
+  patch "/users", to: "users#update"
 
   post   "/login",  to: "login#create"
   delete "/logout", to: "login#destroy"

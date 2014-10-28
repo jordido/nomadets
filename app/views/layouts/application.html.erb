@@ -13,22 +13,34 @@
  	<header>
 	 	<img src="/assets/nomadets_logo.jpg" id="logo" class="logo">
 	 	<div class="header-title">
-	  <h1>Welcome to Nomadets</h1>
+	  	<h1>Welcome to Nomadets</h1>
 	  </div> 
   </header>
-  	<nav class="navbar navbar-default" role="navigation">
+  <nav class="navbar navbar-default" role="navigation">
   	<div class="container-fluid">
   		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-	  	
-					<li><%= link_to "Teachers", users_path %></li>
-					<li><%= link_to "Venues", users_path %></li>
-					<li><%= link_to "Students", users_path %></li>
-					<li><%= link_to "Categories", categories_path %></li>
+      <ul class="nav navbar-nav">	  	
+				<li><%= link_to "Teachers", users_path %></li>
+				<li><%= link_to "Venues", users_path %></li>
+				<li><%= link_to "Students", users_path %></li>
+				<li><%= link_to "Categories", categories_path %></li>
+        <div class="navbar-form navbar-right" role="search">
+        	<% if current_user %>
+        	 	You're logged as <%= current_user.name %>	
+						<div class="form-group">					  		
+							<%= render "users/logout_form" %>
+						</div>
+						<% else %>
+						<div class="form-group">
+						<%= render "users/login_form" %>
+						</div>
+					<% end %>
+				</div>
+
 			</ul>
 			</div>
 		</div>
-		</nav>
+	</nav>
 
 		<%= yield %>
 	</div>

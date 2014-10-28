@@ -2,7 +2,6 @@
 class LoginController < ApplicationController
   def create
     user = User.where(email: params[:email]).first
-    debugger
     # Session engaged
     if user && user.authenticate(params[:password])
       flash[:success] = "Login sucessful! Welcome #{user.name}!"

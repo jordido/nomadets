@@ -13,6 +13,7 @@
 			<th>Region</th>
 			<th>Country</th>
 			<th>Type</th>
+			<th>Categories</th>
 	<% @users.each do |u| %>
 		<tr>
 			<td><%= u.name %></td>
@@ -23,6 +24,7 @@
 			<td><%= u.region %></td>
 			<td><%= u.country %></td>
 			<td><%= u.type %></td>
+			<td><%= u.category %></td>
 			<td><%= link_to "Edit", edit_user_path(u) %>
 			<%= link_to "Delete", user_path(u), method: :delete, data: { confirm: 'Are you sure?' } %></td>	
 		</tr>
