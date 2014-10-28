@@ -1,20 +1,20 @@
-<h4>Show category</h4>
-<div>
-	<%= link_to "New category", new_category_path %>
-</div>
+<h4>Show category <%= @category.name %></h4>
 
 
 <table class="table table_stripted">
-	<th>Name</th>
-	<th>Icon</th>
 	<th>Subcategories</th>
+	<th>Icon</th>
+	
 
 	<% @category.subcategories.each do |c| %>
 		<tr>
-			<td><%= @category.name %></td>
-			<td><%= c.icon %></td>
 			<td><%= c.name %></td>
-			<td><%= link_to "Delete", category_path(c), method: :delete, data: { confirm: 'Are you sure?' } %></td>	
+			<td><%= c.icon %></td>
+			<td><%= link_to "Edit", edit_category_path(c), :class => "btn btn-success" %><%= link_to "Delete", category_path(c), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-success" %></td>	
 		</tr>
 	<% end %>
 </table>
+
+<div>
+	<%= link_to "New category", new_category_path, :class => "btn btn-success"%>
+</div>

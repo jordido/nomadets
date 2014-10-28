@@ -1,4 +1,7 @@
 class CategoriesController < ApplicationController
+ 
+  before_action :load_category, except: [:index, :new, :create]
+
   def index
   	@categories = Category.all
   end
@@ -12,6 +15,7 @@ class CategoriesController < ApplicationController
   end
 
   def update
+    @category = Category.find(params[:id])
   	if @category.update(category_params)
       # http://guides.rubyonrails.org/action_controller_overview.html#the-flash
       flash[:notice] = "category updated successfully"
@@ -48,4 +52,9 @@ class CategoriesController < ApplicationController
   def category_params
   	params.require(:category).permit(:name, :icon, :parent_id)
   end
+
+  def load_category
+    @category = Category.find(params[:id])
+  end
+  
 end

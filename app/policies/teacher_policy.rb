@@ -1,24 +1,37 @@
 class TeacherPolicy < ApplicationPolicy
-	attr_reader :user
+	attr_reader :user, :teacher
 
-  def initialize(user)
+  def initialize(user, teacher)
     @user = user
+    @teacher = teacher
+  end
+
+  def show?
+    teacher.visible || user
   end
 
   def update?
-    user.admin?
+    user || teacher.id == user.id
+  end
+
+  def edit?
+    update?
+  end
+
+  def destroy?
+    false
   end
 
   class Scope
-    attr_reader :user, :scope
+    attr_reader :teacher, :scope
 
-    def initialize(user, scope)
-      @user  = user
+    def initialize(teacher, scope)
+      @teacher  = teacher
       @scope = scope
     end
 
     def resolve
-      if user
+      if teacher
         scope
       else
         scope.visible

@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 	before_action :load_user, except: [:index, :new, :create]
   def index
   	@users = User.all
+  #  @users = policy_scope(User)
   end
 
   def new
@@ -16,14 +17,10 @@ class UsersController < ApplicationController
   end
 
 	def create
-		## Creating new instance user with params from browser
 		@user = User.new(user_params)
-
-		## Check if user is saved to DB (it passes validations)
 		if @user.save
 			redirect_to users_url
 		else
-			## display the "new.html.erb" template with the @user variable
  			render :new
 		end
     rescue ActiveRecord::RecordNotUnique 
@@ -35,11 +32,10 @@ class UsersController < ApplicationController
   end
 
   def update
- #    debugger
-    if @user.update(user_params)
-      # http://guides.rubyonrails.org/action_controller_overview.html#the-flash
-      flash[:notice] = "user updated successfully"
+    debugger
 
+    if @user.update(user_params)
+      flash[:notice] = "user updated successfully"
       redirect_to users_path(@user)
     else
       flash[:error]  = "Ops! We couldn't update the user, please review the errors"
@@ -52,7 +48,7 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
   
-  
+  private
   def deny_access
     render text: "Your are not authorized to perform this action", status: :unauthorized
   end
@@ -73,6 +69,7 @@ class UsersController < ApplicationController
 
   def load_user
     @user = User.find(params[:id])
+#   authorize @user
   end
 
 end
