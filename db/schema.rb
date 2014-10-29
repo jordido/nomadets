@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141029105208) do
+ActiveRecord::Schema.define(version: 20141029115433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,14 +22,14 @@ ActiveRecord::Schema.define(version: 20141029105208) do
   end
 
   create_table "cat_relations", force: true do |t|
-    t.integer  "cat_relation_category_id"
-    t.integer  "cat_relation_user_id"
+    t.integer  "category_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "cat_relations", ["cat_relation_category_id"], name: "index_cat_relations_on_cat_relation_category_id", using: :btree
-  add_index "cat_relations", ["cat_relation_user_id"], name: "index_cat_relations_on_cat_relation_user_id", using: :btree
+  add_index "cat_relations", ["category_id"], name: "index_cat_relations_on_category_id", using: :btree
+  add_index "cat_relations", ["user_id"], name: "index_cat_relations_on_user_id", using: :btree
 
   create_table "categories", force: true do |t|
     t.string   "name"

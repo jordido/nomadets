@@ -55,7 +55,11 @@
 		</div>
 		<div class="form-group">
 			<%= u.label :category %>
-			<%= u.select :category_id, Category.all.collect{ |c| [c.name, c.id] }, :include_blank => true %>
+			<%= u.select :category_id, Category.all.collect{ |c| [c.name, c.id] }, :include_blank => true%>
+		</div>
+		<div class="form-group">
+			<%= u.label :categories %>
+			<%= u.select :categories, Category.all.collect{ |c| [c.name, c.id] }, :include_blank => true, :multiple => true%>
 		</div>
 		<div>
 			<%= u.submit class: "btn btn-success"%>
