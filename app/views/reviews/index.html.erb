@@ -1,0 +1,23 @@
+<h4>Reviews list</h4>
+<div>
+	<%= link_to "New Review", new_review_path %>
+</div>
+
+<table class="table table_stripted">
+			<th>Author</th>
+			<th>Reviewed</th>
+			<th>Comment</th>
+			<th>Rating</th>
+			<th>Course</th>
+	<% if @reviews %>
+		<% @reviews.each do |r| %>
+			<tr>
+				<td><%= r.author.name if r.author %></td>
+				<td><%= r.reviewed.name if r.reviewed %></td>
+				<td><%= r.comment %></td>
+				<td><%= r.rating %></td>
+				<td><%= r.course.name if r.course %></td>
+			</tr>
+		<% end %>
+	<% end %>
+</table>

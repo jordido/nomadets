@@ -32,5 +32,17 @@
 			<td><%= link_to "Edit", edit_user_path(u) %>
 			<%= link_to "Delete", user_path(u), method: :delete, data: { confirm: 'Are you sure?' } %></td>	
 		</tr>
+
+			<%	u.reviews_by.each do |r| %>
+			<tr>
+				<td>
+						<%= r.comment %>
+				</td>
+				<td>
+					<%= r.reviewed.name %>
+				</td>
+			</tr>
+			<% end %>
+
 	<% end %>
 </table>

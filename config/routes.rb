@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
+   
+  root 'users#index'
+  get 'teachers' => 'users#teachers'
+  get 'students' => 'users#students'
+  get 'venues' => 'users#venues'
   
+  resources :reviews
   resources :users, only: [:create, :index, :show, :edit, :update, :new, :destroy]
   resources :categories, only: [:create, :index, :show, :edit, :update, :new, :destroy]
-  
-  root 'users#new'
 
-  #root 'registrations#new'
-  
-  # get  "/register", to: "registrations#new"
   patch "/users", to: "users#update"
 
   post   "/login",  to: "login#create"

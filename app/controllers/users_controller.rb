@@ -9,6 +9,21 @@ class UsersController < ApplicationController
   #  @users = policy_scope(User)
   end
 
+  def teachers
+    @users = Teacher.all
+    render :index
+  end
+
+  def venues
+    @users = Venue.all
+    render :index
+  end
+
+  def students
+    @users = Student.all
+    render :index
+  end
+
   def new
   	@user = User.new
   end
