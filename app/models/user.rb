@@ -9,8 +9,5 @@ class User < ActiveRecord::Base
 
 	validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i } 
 
-	has_many :catrelations
-	has_many :categories, through: :catrelation
-
-	belongs_to :category
+	has_and_belongs_to_many :categories
 end

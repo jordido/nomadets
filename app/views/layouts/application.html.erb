@@ -8,7 +8,9 @@
 </head>
 
 <body>	
-
+	<% flash.map do |key, msg| %>
+    <%= content_tag :div, msg, id: key %>
+  <% end %>
  	<div class="container">
 	 	<header>
 		 	<img src="/assets/nomadets_logo.jpg" id="logo" class="logo">

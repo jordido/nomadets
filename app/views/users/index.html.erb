@@ -27,7 +27,10 @@
 			<td><%= u.region %></td>
 			<td><%= u.country %></td>
 			<td><%= u.type %></td>
-			<td><%= u.category.name if u.category %></td>
+			<% u.categories.each do |c| %>
+				<td><%= c.name %></td>
+			<% end %>
+			
 			<td><%= u.description %></td>
 			<td><%= u.website_url %></td>
 			<td><%= link_to "Edit", edit_user_path(u) %>
