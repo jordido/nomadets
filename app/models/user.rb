@@ -8,5 +8,7 @@ class User < ActiveRecord::Base
 	has_many :courses, class_name: "Course", foreign_key: "courses_id"
 
 	validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i } 
-	validates_presence_of :password_digest
+
+	belongs_to :category
+
 end

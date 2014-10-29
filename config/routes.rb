@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
-  resources :reviews
-
-  resources :users, only: [:create, :index, :show, :edit, :update, :new]
-  
+   
   root 'users#index'
   get 'teachers' => 'users#teachers'
   get 'students' => 'users#students'
   get 'venues' => 'users#venues'
+  
+  resources :reviews
+  resources :users, only: [:create, :index, :show, :edit, :update, :new, :destroy]
+  resources :categories, only: [:create, :index, :show, :edit, :update, :new, :destroy]
+
+  patch "/users", to: "users#update"
+
+  post   "/login",  to: "login#create"
+  delete "/logout", to: "login#destroy"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

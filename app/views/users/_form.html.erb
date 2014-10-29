@@ -1,40 +1,65 @@
-<%= form_for @user do |u| %>
-
-<!-- See validation errors   
-	<% @user.errors.inspect %> -->
-		<% if @user.errors.any? %>
-			<% @user.errors.full_messages.each do |message| %>
-				<%= message %>
-			<% end %>
+<%= form_for @user, :url => users_path do |u| %>
+	<% if @user.errors.any? %>
+		<% @user.errors.full_messages.each do |message| %>
+			<%= message %>
 		<% end %>
+	<% end %>
 	<div class="container-fluid">
-	<div class="form-group">
-	<%= u.label :name %>
-	<%= u.text_field :name, class: "form-control", placeholder: "First name " %>
-	</div>
-	<div class="form-group">
-	<%= u.label :last_name %>
-	<%= u.text_field :last_name, class: "form-control", placeholder: "Last name " %>
-	</div>
-	<div class="form-group">
-	<%= u.label :email %>
-	<%= u.text_field :email, class: "form-control", placeholder: "Email" %>
-	</div>
-	<div class="form-group">
-	<%= u.label :password %>
-	<%= u.password_field :password_digest, class: "form-control", placeholder: "Password" %>
-	</div>
-	<div class="form-group">
-	<%= u.label :repeat_password %>
-	<%= u.password_field :password_confirmation, class: "form-control", placeholder: "Password" %>
-	</div>
-	<div class="form-group">
-	<%= u.label :type %>
-	<%= u.select :type, User::TYPES.collect{ |t| [t]}%>
-	</div>
-	<div>
-	<%= u.submit class: "btn btn-success"%>
-	</div>
+		<div class="form-group">
+			<%= u.label :name %>
+			<%= u.text_field :name, class: "form-control", placeholder: "First name" %>
+		</div>
+		<div class="form-group">
+			<%= u.label :last_name %>
+			<%= u.text_field :last_name, class: "form-control", placeholder: "Last name" %>
+		</div>
+		<div class="form-group">
+			<%= u.label :address %>
+			<%= u.text_field :address, class: "form-control", placeholder: "Address" %>
+		</div>
+		<div class="form-group">
+			<%= u.label :city %>
+			<%= u.text_field :city, class: "form-control", placeholder: "city" %>
+		</div>
+		<div class="form-group">
+			<%= u.label :region %>
+			<%= u.text_field :region, class: "form-control", placeholder: "region" %>
+		</div>
+		<div class="form-group">
+			<%= u.label :country %>
+			<%= u.text_field :country, class: "form-control", placeholder: "country" %>
+		</div>
+		<div class="form-group">
+			<%= u.label :description %>
+			<%= u.text_field :description, class: "form-control", placeholder: "description" %>
+		</div>
+		<div class="form-group">
+			<%= u.label :website_url %>
+			<%= u.text_field :website_url, class: "form-control", placeholder: "URL" %>
+		</div>
+		<div class="form-group">
+			<%= u.label :email %>
+			<%= u.text_field :email, class: "form-control", placeholder: "Email" %>
+		</div>
+		<div class="form-group">
+			<%= u.label :password %>
+			<%= u.password_field :password, class: "form-control", placeholder: "Password" %>
+		</div>
+		<div class="form-group">
+			<%= u.label :repeat_password %>
+			<%= u.password_field :password_confirmation, class: "form-control", placeholder: "Password" %>
+		</div>
+		<div class="form-group">
+			<%= u.label :type %>
+			<%= u.select :type, User::TYPES.collect{ |t| [t]}%>
+		</div>
+		<div class="form-group">
+			<%= u.label :category %>
+			<%= u.select :category_id, Category.all.collect{ |c| [c.name, c.id] }, :include_blank => true %>
+		</div>
+		<div>
+			<%= u.submit class: "btn btn-success"%>
+		</div>
 	</div>
 
 <% end %>
