@@ -11,4 +11,6 @@ class User < ActiveRecord::Base
 
 	has_many :catrelations
 	has_many :categories, through: :catrelations
+
+	belongs_to :category
 end
