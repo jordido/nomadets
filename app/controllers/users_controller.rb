@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   include Pundit
 
-	before_action :load_user, except: [:index, :new, :create]
+	before_action :load_user, only: [:edit, :update, :show, :destroy]
   def index
   	@users = User.all
   #  @users = policy_scope(User)
@@ -47,7 +47,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    debugger
 
     if @user.update(user_params)
       flash[:notice] = "user updated successfully"
