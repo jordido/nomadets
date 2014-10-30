@@ -1,6 +1,7 @@
 <h4>User</h4>
 
 <table class="table table_stripted">
+			<th></th>
 			<th>First name</th>
 			<th>Last name</th>
 			<th>Email</th>
@@ -10,6 +11,7 @@
 			<th>Country</th>
 			<th>Type</th>	
 		<tr>
+			<td><%= image_tag @user.picture, width: "85px", heigth: "85px" %></td>
 			<td><%= @user.name %></td>
 			<td><%= @user.last_name %></td>
 			<td><%= @user.email %></td>

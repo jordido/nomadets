@@ -15,7 +15,6 @@
 			<th>Region</th>
 			<th>Country</th>
 			<th>Type</th>
-			<th>Categories</th>
 			<th>Description</th>
 			<th>website</th>
 		<tr>
@@ -28,10 +27,6 @@
 			<td><%= u.region %></td>
 			<td><%= u.country %></td>
 			<td><%= u.type %></td>
-			<% u.categories.each do |c| %>
-				<td><%= c.name %></td>
-			<% end %>
-			
 			<td><%= u.description %></td>
 			<td><%= u.website_url %></td>
 

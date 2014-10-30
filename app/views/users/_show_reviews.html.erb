@@ -1,6 +1,36 @@
-<% if ( @user.reviews_to.count + @user.reviews_by.count ) > 0 %>
+
 <div class="reviewsBox">
     <div class="detailBox">
+        <div class="titleBox">
+          <label>Categories of <%= @user.name %></label>
+            <button type="button" class="close" aria-hidden="true">&times;</button>
+        </div>
+        <div class="actionBox">
+            <ul class="commentList">
+            <%if @user.categories.count > 0 %>
+                <%  @user.categories.each do |c| %>
+                    <li>
+                        <div class="commenterImage">
+                          <%= image_tag c.icon, width: "65px", heigth: "65px" %>
+                        </div>
+                        <div class="commentText">
+                            <p class=""><%= c.name %><%if c.parent_category%> from <% c.parent_category.name  %><%end%></p> 
+                        </div>
+                    </li>
+                <% end %>           
+             <%else %>
+                <li>
+                    <div class="commentText">
+                        <p class="">This user has no categories</p> 
+                    </div>
+                </li>
+            <% end %>
+            </ul>
+        </div>
+    </div>
+    <% if ( @user.reviews_to.count + @user.reviews_by.count ) > 0 %>
+    <div class="detailBox">
+        <% if @user.reviews_to.count > 0 %>
         <div class="titleBox">
           <label>Reviews about <%= @user.name %></label>
             <button type="button" class="close" aria-hidden="true">&times;</button>
@@ -14,11 +44,11 @@
                         </div>
                         <div class="commentText">
                             <p class=""><%= r.comment %></p> <span class="date sub-text">on <%=r.updated_at %> by <%= r.author.name %></span>
-
                         </div>
                     </li>
                 <% end %>
             </ul>
+            <% if current_user && ( current_user.id != @user.id) %>
             <form class="form-inline" role="form">
                 <div class="form-group">
                     <input class="form-control" type="text" placeholder="Your review" />
@@ -27,9 +57,12 @@
                     <button class="btn btn-default">Add</button>
                 </div>
             </form>
+            <% end %>
         </div>
+        <% end %>
     </div>
     <div class="detailBox">
+        <% if @user.reviews_by.count > 0 %>
         <div class="titleBox">
           <label>Reviews from <%= @user.name %></label>
             <button type="button" class="close" aria-hidden="true">&times;</button>
@@ -48,15 +81,8 @@
                     </li>
                 <% end %>
             </ul>
-            <form class="form-inline" role="form">
-                <div class="form-group">
-                    <input class="form-control" type="text" placeholder="Your comments" />
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-default">Add</button>
-                </div>
-            </form>
         </div>
+    <% end %>
     </div>
 </div>
 <% end %>
