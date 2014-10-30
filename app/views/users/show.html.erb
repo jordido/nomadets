@@ -7,7 +7,7 @@
 			<th>Email</th>
 			<th>Address</th>
 			<th>City</th>
-			<th>Region</th>
+			<th>State</th>
 			<th>Country</th>
 			<th>Type</th>	
 		<tr>
@@ -17,8 +17,10 @@
 			<td><%= @user.email %></td>
 			<td><%= @user.address %></td>
 			<td><%= @user.city %></td>
-			<td><%= @user.region %></td>
+			<td><%= @user.state %></td>
 			<td><%= @user.country %></td>
+			<td><%= @user.latitude %></td>
+			<td><%= @user.longitude %></td>			
 			<td><%= @user.type %></td>
 		</tr>
 </table>

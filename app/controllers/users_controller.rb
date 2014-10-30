@@ -54,7 +54,6 @@ class UsersController < ApplicationController
       flash[:error]  = "Ops! We couldn't update the user, please review the errors"
       render :edit
     end
-#    save_categories
   end
   
   def destroy
@@ -70,20 +69,20 @@ class UsersController < ApplicationController
   def user_params
     if !params[:user].nil?
       @type_of_user = "user" 
-  	  params.require(:user).permit(:name, :last_name, :password, :password_confirmation, :email, :address, :type, :city, :region, :country, :description, :website_url, :category_id, :picture, category_ids: []) 
+  	  params.require(:user).permit(:name, :last_name, :password, :password_confirmation, :email, :address, :type, :city, :state, :country, :description, :website_url, :category_id, :picture, category_ids: []) 
          
     elsif !params[:teacher].nil?
       @type_of_user = "teacher"
-      params.require(:teacher).permit(:name, :last_name, :password, :password_confirmation, :email, :address, :type, :city, :region, :country, :description, :website_url, :category_id, :picture, category_ids: [])
+      params.require(:teacher).permit(:name, :last_name, :password, :password_confirmation, :email, :address, :type, :city, :state, :country, :description, :website_url, :category_id, :picture, category_ids: [])
                
     elsif !params[:student].nil?
       @type_of_user = "student" 
-      params.require(:student).permit(:name, :last_name, :password, :password_confirmation, :email, :address, :type, :city, :region, :country, :description, :website_url, :category_id, :picture, category_ids: []) 
+      params.require(:student).permit(:name, :last_name, :password, :password_confirmation, :email, :address, :type, :city, :state, :country, :description, :website_url, :category_id, :picture, category_ids: []) 
          
     elsif !params[:venue].nil?
       
       @type_of_user = "venue" 
-      params.require(:venue).permit(:name, :last_name, :password, :password_confirmation, :email, :address, :type, :city, :region, :country, :description, :website_url, :category_id, :picture, category_ids: []) 
+      params.require(:venue).permit(:name, :last_name, :password, :password_confirmation, :email, :address, :type, :city, :state, :country, :description, :website_url, :category_id, :picture, category_ids: []) 
        
     else 
       @type_of_user = "error"
@@ -91,22 +90,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def full_street_address
+    [address, city, state, country].compact.join(', ')
+  end
+
+  private
+
   def load_user
     @user = User.find(params[:id])
 #   authorize @user
   end
-
-  def save_categories
-    if @type_of_user == "teacher"
-    @user.categories.destroy
-#    if !params[:categories].nil?
-      params[:teacher][:categories].each do |cat|
-        if cat != ""
-        CatRelation.create(:user_id => @user.id, :category_id => cat)
-        end
-      end
-    end
-#    end
-  end
-
 end

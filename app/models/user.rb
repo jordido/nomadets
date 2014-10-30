@@ -11,4 +11,12 @@ class User < ActiveRecord::Base
 	validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i } 
 
 	has_and_belongs_to_many :categories
+
+	geocoded_by :full_street_address   # can also be an IP address
+	after_validation :geocode          # auto-fetch coordinates
+	
+	def full_street_address
+  	[address, city, state, country].compact.join(', ')
+	end
+
 end
