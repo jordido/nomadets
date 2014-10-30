@@ -15,7 +15,6 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    @category = Category.find(params[:id])
   	if @category.update(category_params)
       # http://guides.rubyonrails.org/action_controller_overview.html#the-flash
       flash[:notice] = "category updated successfully"

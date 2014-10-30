@@ -4,7 +4,8 @@
 	<%= link_to "New User", new_user_path %>
 </div>
 
-<table class="table table_stripted">
+	<% @users.each do |u| %>
+	<table class="table table_stripted">
 			<th>First name</th>
 			<th>Last name</th>
 			<th>Email</th>
@@ -16,7 +17,7 @@
 			<th>Categories</th>
 			<th>Description</th>
 			<th>website</th>
-	<% @users.each do |u| %>
+
 		<tr>
 			<td><%= u.name %></td>
 			<td><%= u.last_name %></td>
@@ -26,23 +27,18 @@
 			<td><%= u.region %></td>
 			<td><%= u.country %></td>
 			<td><%= u.type %></td>
-			<td><%= u.category.name if u.category %></td>
+			<% u.categories.each do |c| %>
+				<td><%= c.name %></td>
+			<% end %>
+			
 			<td><%= u.description %></td>
 			<td><%= u.website_url %></td>
 			<td><%= link_to "Edit", edit_user_path(u) %>
+			<td><%= link_to "Show", user_path(u) %>
 			<%= link_to "Delete", user_path(u), method: :delete, data: { confirm: 'Are you sure?' } %></td>	
 		</tr>
-
-			<%	u.reviews_by.each do |r| %>
-			<tr>
-				<td>
-						<%= r.comment %>
-				</td>
-				<td>
-					<%= r.reviewed.name %>
-				</td>
-			</tr>
-			<% end %>
-
+		</table>
+			<% @user = u %>
+			<%= render 'show_reviews'%>
 	<% end %>
-</table>
+

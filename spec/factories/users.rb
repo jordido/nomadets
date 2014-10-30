@@ -9,7 +9,6 @@ FactoryGirl.define do
 		country   {Faker::Address.country }
 		description { Faker::Lorem.sentence }
 		website_url { Faker::Internet.url }
-		category_id 1
 		password_digest {Faker::Internet.password }
 	end
 end

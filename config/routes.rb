@@ -1,18 +1,34 @@
 Rails.application.routes.draw do
    
   root 'users#index'
+  
+
   get 'teachers' => 'users#teachers'
+  put 'teachers/:id' => 'users#update', as: :teacher
+  patch 'teachers/:id' => 'users#update'
+
   get 'students' => 'users#students'
+  put 'students/:id' => 'users#update', as: :student
+  patch 'students/:id' => 'users#update'
+  
   get 'venues' => 'users#venues'
+  put 'venues/:id' => 'users#update', as: :venue
+  patch 'venues/:id' => 'users#update'
+
+  get 'reviews_by/:id' =>'reviews#show_by', as: :reviews_by
   
   resources :reviews
   resources :users, only: [:create, :index, :show, :edit, :update, :new, :destroy]
   resources :categories, only: [:create, :index, :show, :edit, :update, :new, :destroy]
 
+  get 'reviews_by/:id' =>'reviews#show_by'
+
   patch "/users", to: "users#update"
 
   post   "/login",  to: "login#create"
   delete "/logout", to: "login#destroy"
+
+  #mount Upmin::Engine => '/admin'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

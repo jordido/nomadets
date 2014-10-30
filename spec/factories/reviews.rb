@@ -1,10 +1,10 @@
 FactoryGirl.define do
   factory :review do
-    creator_id "MyString"
-		referred_id "MyString"
-		comment "MyString"
+    author_id  { Faker::Number.digit }
+		reviewed_id { Faker::Number.digit }
+		comment { Faker::Lorem.sentence }
 		rating 1
-		course_id "MyString"
+		course_id { Faker::Number.digit }
   end
 
 end

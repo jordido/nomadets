@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141028180552) do
+ActiveRecord::Schema.define(version: 20141029172039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,16 @@ ActiveRecord::Schema.define(version: 20141028180552) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "categories_users", id: false, force: true do |t|
+    t.integer  "category_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "categories_users", ["category_id"], name: "index_categories_users_on_category_id", using: :btree
+  add_index "categories_users", ["user_id"], name: "index_categories_users_on_user_id", using: :btree
 
   create_table "courses", force: true do |t|
     t.string   "name"
@@ -70,7 +80,6 @@ ActiveRecord::Schema.define(version: 20141028180552) do
     t.datetime "updated_at"
     t.string   "email"
     t.string   "type"
-    t.integer  "category_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree

@@ -11,7 +11,7 @@ class LoginController < ApplicationController
       flash[:error] = "Login was not sucessful"
     end
 
-    redirect_to users_path
+    redirect_to user_path(user.id)
   end
 
   def destroy
