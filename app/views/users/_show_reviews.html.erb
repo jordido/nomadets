@@ -1,4 +1,3 @@
-
 <div class="reviewsBox">
     <div class="detailBox">
         <div class="titleBox">
@@ -28,61 +27,69 @@
             </ul>
         </div>
     </div>
-    <% if ( @user.reviews_to.count + @user.reviews_by.count ) > 0 %>
     <div class="detailBox">
-        <% if @user.reviews_to.count > 0 %>
+
         <div class="titleBox">
           <label>Reviews about <%= @user.name %></label>
             <button type="button" class="close" aria-hidden="true">&times;</button>
         </div>
         <div class="actionBox">
             <ul class="commentList">
-                <%  @user.reviews_to.each do |r| %>
+                <% if @user.reviews_to.count > 0 %>
+                    <%  @user.reviews_to.each do |r| %>
+                        <li>
+                            <div class="commenterImage">
+                              <%= image_tag r.author.picture %>
+                            </div>
+                            <div class="commentText">
+                                <p class=""><%= r.comment %></p> <span class="date sub-text">on <%=r.updated_at %> by <%= r.author.name %></span>
+                            </div>
+                        </li>
+                    <% end %>
+                <% else %>
                     <li>
                         <div class="commenterImage">
                           <img src="http://lorempixel.com/50/50/people/6" />
                         </div>
                         <div class="commentText">
-                            <p class=""><%= r.comment %></p> <span class="date sub-text">on <%=r.updated_at %> by <%= r.author.name %></span>
+                            <p class=""> This user has still no reviews</p>
                         </div>
                     </li>
                 <% end %>
             </ul>
             <% if current_user && ( current_user.id != @user.id) %>
-            <form class="form-inline" role="form">
-                <div class="form-group">
-                    <input class="form-control" type="text" placeholder="Your review" />
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-default">Add</button>
-                </div>
-            </form>
+                <form class="form-inline" role="form">
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder="Your review" />
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-default">Add</button>
+                    </div>
+                </form>
             <% end %>
         </div>
-        <% end %>
     </div>
     <div class="detailBox">
         <% if @user.reviews_by.count > 0 %>
-        <div class="titleBox">
-          <label>Reviews from <%= @user.name %></label>
-            <button type="button" class="close" aria-hidden="true">&times;</button>
-        </div>
-        <div class="actionBox">
-            <ul class="commentList">
-                <%  @user.reviews_by.each do |r| %>
-                    <li>
-                        <div class="commenterImage">
-                          <img src="http://lorempixel.com/50/50/people/6" />
-                        </div>
-                        <div class="commentText">
-                            <p class=""><%= r.comment %></p> <span class="date sub-text">on <%=r.updated_at %> has reviewed to <%= r.reviewed.name %></span>
+            <div class="titleBox">
+              <label>Reviews from <%= @user.name %></label>
+                <button type="button" class="close" aria-hidden="true">&times;</button>
+            </div>
+            <div class="actionBox">
+                <ul class="commentList">
+                    <%  @user.reviews_by.each do |r| %>
+                        <li>
+                            <div class="commenterImage">
+                                <%= image_tag r.author.picture %>
+                            </div>
+                            <div class="commentText">
+                                <p class=""><%= r.comment %></p> <span class="date sub-text">on <%=r.updated_at %> has reviewed to <%= r.reviewed.name %></span>
 
-                        </div>
-                    </li>
-                <% end %>
-            </ul>
-        </div>
-    <% end %>
+                            </div>
+                        </li>
+                    <% end %>
+                </ul>
+            </div>
+        <% end %>
     </div>
 </div>
-<% end %>
