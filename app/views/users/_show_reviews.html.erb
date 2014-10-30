@@ -1,3 +1,4 @@
+<% if ( @user.reviews_to.count + @user.reviews_by.count ) > 0 %>
 <div class="reviewsBox">
     <div class="detailBox">
         <div class="titleBox">
@@ -58,3 +59,4 @@
         </div>
     </div>
 </div>
+<% end %>
