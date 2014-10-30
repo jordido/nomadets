@@ -36,7 +36,12 @@ gem 'pundit'
 
 gem 'upmin-admin'
 
+# Carrierwave for uploading images
 gem "carrierwave"
+
+# Geocoder for geographical information
+gem "geocoder"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
