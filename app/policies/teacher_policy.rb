@@ -1,4 +1,4 @@
-class TeacherPolicy < ApplicationPolicy
+class TeacherPolicy 
 	attr_reader :user, :teacher
 
   def initialize(user, teacher)

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
    
   root 'users#index'
+  
 
   get 'teachers' => 'users#teachers'
   put 'teachers/:id' => 'users#update', as: :teacher
@@ -22,6 +23,8 @@ Rails.application.routes.draw do
 
   post   "/login",  to: "login#create"
   delete "/logout", to: "login#destroy"
+
+  mount Upmin::Engine => '/admin'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
