@@ -68,23 +68,22 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    debugger
     if !params[:user].nil?
       @type_of_user = "user" 
-  	  params.require(:user).permit(:name, :last_name, :password, :password_confirmation, :email, :address, :type, :city, :region, :country, :description, :website_url, :category_id, category_ids: []) 
+  	  params.require(:user).permit(:name, :last_name, :password, :password_confirmation, :email, :address, :type, :city, :region, :country, :description, :website_url, :category_id, :picture, category_ids: []) 
          
     elsif !params[:teacher].nil?
       @type_of_user = "teacher"
-      params.require(:teacher).permit(:name, :last_name, :password, :password_confirmation, :email, :address, :type, :city, :region, :country, :description, :website_url, :category_id, category_ids: [])
+      params.require(:teacher).permit(:name, :last_name, :password, :password_confirmation, :email, :address, :type, :city, :region, :country, :description, :website_url, :category_id, :picture, category_ids: [])
                
     elsif !params[:student].nil?
       @type_of_user = "student" 
-      params.require(:student).permit(:name, :last_name, :password, :password_confirmation, :email, :address, :type, :city, :region, :country, :description, :website_url, :category_id, category_ids: []) 
+      params.require(:student).permit(:name, :last_name, :password, :password_confirmation, :email, :address, :type, :city, :region, :country, :description, :website_url, :category_id, :picture, category_ids: []) 
          
     elsif !params[:venue].nil?
       
       @type_of_user = "venue" 
-      params.require(:venue).permit(:name, :last_name, :password, :password_confirmation, :email, :address, :type, :city, :region, :country, :description, :website_url, :category_id, category_ids: []) 
+      params.require(:venue).permit(:name, :last_name, :password, :password_confirmation, :email, :address, :type, :city, :region, :country, :description, :website_url, :category_id, :picture, category_ids: []) 
        
     else 
       @type_of_user = "error"

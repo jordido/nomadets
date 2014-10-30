@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+	mount_uploader :picture, UserPictureUploader
 	TYPES = ["Teacher","Venue","Student"]
 	has_secure_password
 

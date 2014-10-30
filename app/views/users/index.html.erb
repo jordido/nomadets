@@ -17,7 +17,7 @@
 			<th>Categories</th>
 			<th>Description</th>
 			<th>website</th>
-
+			<th>Image</th>
 		<tr>
 			<td><%= u.name %></td>
 			<td><%= u.last_name %></td>
@@ -33,6 +33,7 @@
 			
 			<td><%= u.description %></td>
 			<td><%= u.website_url %></td>
+			<td><%= image_tag u.picture, width: "85px", heigth: "85px" %></td>
 			<td><%= link_to "Edit", edit_user_path(u) %>
 			<td><%= link_to "Show", user_path(u) %>
 			<%= link_to "Delete", user_path(u), method: :delete, data: { confirm: 'Are you sure?' } %></td>	

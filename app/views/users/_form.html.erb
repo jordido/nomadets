@@ -49,6 +49,10 @@
 			<%= u.label :repeat_password %>
 			<%= u.password_field :password_confirmation, class: "form-control", placeholder: "Password" %>
 		</div>
+		<div class="field">
+    	<%= u.label :picture %><br>
+    	<%= u.file_field :picture, class: "form-control", placeholder: "Image url" %>
+		</div>
 		<div class="form-group">
 			<%= u.label :type %>
 			<%= u.select :type, User::TYPES.collect{ |t| [t]}%>
