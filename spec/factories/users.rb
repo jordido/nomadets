@@ -5,10 +5,12 @@ FactoryGirl.define do
 		last_name { Faker::Name.last_name }
 		address { Faker::Address.street_name }
 		city { Faker::Address.city }
-		region { Faker::Address.state }
+		state { Faker::Address.state }
 		country   {Faker::Address.country }
 		description { Faker::Lorem.sentence }
 		website_url { Faker::Internet.url }
 		password_digest {Faker::Internet.password }
+		latitude {Faker::Address.latitude}
+		longitude {Faker::Address.longitude}
 	end
 end
