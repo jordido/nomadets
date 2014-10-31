@@ -22,4 +22,5 @@ class User < ActiveRecord::Base
   	[address, city, state, country].compact.join(', ')
 	end
 
+	scope :located, -> { where.not(latitude: nil).where.not(longitude: nil) }
 end

@@ -6,7 +6,13 @@ class UsersController < ApplicationController
 	before_action :load_user, only: [:edit, :update, :show, :destroy]
   def index
   	@users = User.all
+ 
   #  @users = policy_scope(User)
+  end
+
+  def map
+    @users = User.located
+    render :json => @users
   end
 
   def teachers
@@ -100,4 +106,13 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 #   authorize @user
   end
+
+  # def load_map
+  #   @hash = Gmaps4rails.build_markers(@users) do |user, marker|
+  #   marker.lat user.latitude
+  #   marker.lng user.longitude
+  #   end
+  # end
+
+
 end

@@ -26,10 +26,10 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
-
 # Pagination
 gem 'kaminari'
 
+# Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'pundit'
@@ -37,13 +37,14 @@ gem 'pundit'
 gem 'upmin-admin'
 
 # Carrierwave for uploading images
-gem "carrierwave"
+gem 'carrierwave'
 
+gem 'underscore-rails'
 # Geocoder for geographical information
-gem "geocoder"
+gem 'geocoder'
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+#for connecting googlemaps
+gem 'gmaps4rails'
 
 # Use unicorn as the app server
 # gem 'unicorn'
