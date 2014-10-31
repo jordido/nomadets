@@ -1,7 +1,7 @@
 <h4>User</h4>
 
 <table class="table table_stripted">
-			<th></th>
+			<th><%= @user.type %></th>
 			<th>First name</th>
 			<th>Last name</th>
 			<th>Email</th>
@@ -9,9 +9,11 @@
 			<th>City</th>
 			<th>State</th>
 			<th>Country</th>
-			<th>Type</th>	
+			<td>Latitude</td>
+			<td>Longitude</td>
+			<td>Website</td>
 		<tr>
-			<td><%= image_tag @user.picture, width: "85px", heigth: "85px" %></td>
+			<td><%= image_tag @user.picture, :class => "userImage"%></td>
 			<td><%= @user.name %></td>
 			<td><%= @user.last_name %></td>
 			<td><%= @user.email %></td>
@@ -20,8 +22,14 @@
 			<td><%= @user.state %></td>
 			<td><%= @user.country %></td>
 			<td><%= @user.latitude %></td>
-			<td><%= @user.longitude %></td>			
-			<td><%= @user.type %></td>
+			<td><%= @user.longitude %></td>
+			<td><%= @user.website_url %></td>
+			<% if admin %>
+			<td>
+				<%= link_to "Edit", edit_user_path(u) %>
+				<%= link_to "Delete", user_path(u), method: :delete, data: { confirm: 'Are you sure?' } %>
+				</td>	
+			<% end %>		
 		</tr>
 </table>
 <br/>

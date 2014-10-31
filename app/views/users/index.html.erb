@@ -6,7 +6,7 @@
 
 	<% @users.each do |u| %>
 	<table class="table table_stripted">
-			<th></th>
+			<th><%= u.type %></th>
 			<th>First name</th>
 			<th>Last name</th>
 			<th>Email</th>
@@ -14,13 +14,11 @@
 			<th>City</th>
 			<th>state</th>
 			<th>Country</th>
-			<td><%= u.lattitude %></td>
-			<td><%= u.logitude %></td>	
-			<th>Type</th>
-			<th>Description</th>
+			<td>Lattitude</td>
+			<td>Longitude</td>	
 			<th>website</th>
 		<tr>
-			<td><%= image_tag u.picture, width: "85px", heigth: "85px" %></td>
+			<td><%= image_tag u.picture, :class => "userImage"%></td>
 			<td><%= u.name %></td>
 			<td><%= u.last_name %></td>
 			<td><%= u.email %></td>
@@ -28,15 +26,15 @@
 			<td><%= u.city %></td>
 			<td><%= u.state %></td>
 			<td><%= u.country %></td>
-			<td><%= u.lattitude %></td>
-			<td><%= u.logitude %></td>			
-			<td><%= u.type %></td>
-			<td><%= u.description %></td>
+			<td><%= u.latitude %></td>
+			<td><%= u.longitude %></td>			
 			<td><%= u.website_url %></td>
-
-			<td><%= link_to "Edit", edit_user_path(u) %>
 			<td><%= link_to "Show", user_path(u) %>
+			<% if admin %>
+			<td><%= link_to "Edit", edit_user_path(u) %>
+
 			<%= link_to "Delete", user_path(u), method: :delete, data: { confirm: 'Are you sure?' } %></td>	
+			<% end %>
 		</tr>
 		</table>
 			<% @user = u %>

@@ -1,34 +1,6 @@
 <div class="reviewsBox">
+    <%= render 'show_description' %>
     <div class="detailBox">
-        <div class="titleBox">
-          <label>Categories of <%= @user.name %></label>
-            <button type="button" class="close" aria-hidden="true">&times;</button>
-        </div>
-        <div class="actionBox">
-            <ul class="commentList">
-            <%if @user.categories.count > 0 %>
-                <%  @user.categories.each do |c| %>
-                    <li>
-                        <div class="commenterImage">
-                          <%= image_tag c.icon, width: "65px", heigth: "65px" %>
-                        </div>
-                        <div class="commentText">
-                            <p class=""><%= c.name %><%if c.parent_category%> from <% c.parent_category.name  %><%end%></p> 
-                        </div>
-                    </li>
-                <% end %>           
-             <%else %>
-                <li>
-                    <div class="commentText">
-                        <p class="">This user has no categories</p> 
-                    </div>
-                </li>
-            <% end %>
-            </ul>
-        </div>
-    </div>
-    <div class="detailBox">
-
         <div class="titleBox">
           <label>Reviews about <%= @user.name %></label>
             <button type="button" class="close" aria-hidden="true">&times;</button>
@@ -48,9 +20,6 @@
                     <% end %>
                 <% else %>
                     <li>
-                        <div class="commenterImage">
-                          <img src="http://lorempixel.com/50/50/people/6" />
-                        </div>
                         <div class="commentText">
                             <p class=""> This user has still no reviews</p>
                         </div>
@@ -69,27 +38,5 @@
             <% end %>
         </div>
     </div>
-    <div class="detailBox">
-        <% if @user.reviews_by.count > 0 %>
-            <div class="titleBox">
-              <label>Reviews from <%= @user.name %></label>
-                <button type="button" class="close" aria-hidden="true">&times;</button>
-            </div>
-            <div class="actionBox">
-                <ul class="commentList">
-                    <%  @user.reviews_by.each do |r| %>
-                        <li>
-                            <div class="commenterImage">
-                                <%= image_tag r.author.picture %>
-                            </div>
-                            <div class="commentText">
-                                <p class=""><%= r.comment %></p> <span class="date sub-text">on <%=r.updated_at %> has reviewed to <%= r.reviewed.name %></span>
-
-                            </div>
-                        </li>
-                    <% end %>
-                </ul>
-            </div>
-        <% end %>
-    </div>
+    <%= render 'show_categories' %>
 </div>
