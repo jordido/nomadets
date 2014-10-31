@@ -22,8 +22,8 @@
 			<%= u.text_field :city, class: "form-control", placeholder: "city" %>
 		</div>
 		<div class="form-group">
-			<%= u.label :region %>
-			<%= u.text_field :region, class: "form-control", placeholder: "region" %>
+			<%= u.label :state %>
+			<%= u.text_field :state, class: "form-control", placeholder: "state" %>
 		</div>
 		<div class="form-group">
 			<%= u.label :country %>
@@ -48,6 +48,10 @@
 		<div class="form-group">
 			<%= u.label :repeat_password %>
 			<%= u.password_field :password_confirmation, class: "form-control", placeholder: "Password" %>
+		</div>
+		<div class="field">
+    	<%= u.label :picture %><br>
+    	<%= u.file_field :picture, class: "form-control", placeholder: "Image url" %>
 		</div>
 		<div class="form-group">
 			<%= u.label :type %>

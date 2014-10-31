@@ -1,0 +1,23 @@
+<div class="detailBox">
+    <% if @user.reviews_by.count > 0 %>
+        <div class="titleBox">
+          <label><%= @user.name %> has commented</label>
+            <button type="button" class="close" aria-hidden="true">&times;</button>
+        </div>
+        <div class="actionBox">
+            <ul class="commentList">
+                <%  @user.reviews_by.each do |r| %>
+                    <li>
+                        <div class="commenterImage">
+                            <%= image_tag r.author.picture %>
+                        </div>
+                        <div class="commentText">
+                            <p class=""><%= r.comment %></p> <span class="date sub-text">on <%=r.updated_at %> has reviewed to <%= r.reviewed.name %></span>
+
+                        </div>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+</div>

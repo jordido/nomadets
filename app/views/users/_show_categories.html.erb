@@ -1,0 +1,29 @@
+<div class="detailBox">
+    <div class="titleBox">
+      <label>Categories of <%= @user.name %></label>
+        <button type="button" class="close" aria-hidden="true">&times;</button>
+    </div>
+    <div class="actionBox">
+        <ul class="commentList">
+        <%if @user.categories.count > 0 %>
+            <%  @user.categories.each do |c| %>
+                <li>
+                    <div class="commentText">
+                        <p class="">
+                        <%= c.name %>
+                        <%if c.parent_category %> from <% c.parent_name %><% end %>
+                        </p> 
+                    </div>
+                </li>
+            <% end %>           
+         <%else %>
+            <li>
+                <div class="commentText">
+                    <p class="">This user has no categories</p> 
+                </div>
+            </li>
+        <% end %>
+        </ul>
+    </div>
+</div>
+ 

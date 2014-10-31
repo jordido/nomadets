@@ -4,4 +4,8 @@ class Category < ActiveRecord::Base
   has_many :courses
   has_and_belongs_to_many :users
   has_many :categories, through: :categories
+
+  def parent_name
+  	parent_category.name if parent_category
+  end
 end
