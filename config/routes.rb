@@ -2,6 +2,7 @@ Rails.application.routes.draw do
    
   root 'users#index'
   
+  get 'map' => 'users#map', as: :map
 
   get 'teachers' => 'users#teachers'
   put 'teachers/:id' => 'users#update', as: :teacher

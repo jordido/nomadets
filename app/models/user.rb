@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+
 	mount_uploader :picture, UserPictureUploader
 	TYPES = ["Teacher","Venue","Student"]
 	has_secure_password
@@ -15,8 +16,12 @@ class User < ActiveRecord::Base
 	geocoded_by :full_street_address   # can also be an IP address
 	after_validation :geocode          # auto-fetch coordinates
 	
+	reverse_geocoded_by :latitude, :longitude
+	after_validation :reverse_geocode  # auto-fetch address
+
 	def full_street_address
   	[address, city, state, country].compact.join(', ')
 	end
 
+	scope :located, -> { where.not(latitude: nil).where.not(longitude: nil) }
 end
