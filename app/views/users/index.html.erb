@@ -11,8 +11,9 @@
 			<th>Last name</th>
 			<th>Email</th>
 			<th>Address</th>
+			<th>Town</th>
 			<th>City</th>
-			<th>state</th>
+			<th>region</th>
 			<th>Country</th>
 			<td>Lattitude</td>
 			<td>Longitude</td>	
@@ -23,9 +24,10 @@
 			<td><%= u.last_name %></td>
 			<td><%= u.email %></td>
 			<td><%= u.address %></td>
-			<td><%= u.city %></td>
-			<td><%= u.state %></td>
-			<td><%= u.country %></td>
+			<td><%= u.town %></td>
+			<td><%= u.city.name if u.city_id %></td>
+			<td><%= u.region.name if u.region_id %></td>
+			<td><%= u.country.name if u.country_id %></td>
 			<td><%= u.latitude %></td>
 			<td><%= u.longitude %></td>			
 			<td><%= u.website_url %></td>
