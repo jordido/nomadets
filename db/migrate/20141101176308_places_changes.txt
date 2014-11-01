@@ -1,0 +1,23 @@
+class PlacesChanges < ActiveRecord::Migration
+#  Rails migration for GeoWorldMap db into postgresql db
+#(inspired by http://blog.inspired.no/populate-your-database-with-free-world-cities-countries-regions-in-2-minutes-using-a-rails-migration-273/ post)
+ 
+#extract files from GeoWorldMap.zip archive from here
+#  http://www.geobytes.com/GeoWorldMap.zip
+#
+#and place them into #{Rails.root}/db/migrate/
+##the archive has 'cities.txt' file, rename it 'Cities.txt'
+#mv cities.txt Cities.txt
+  def up   
+    rename_column :countries, 'CountryId', :id
+    rename_column :regions, 'RegionId', :id
+    rename_column :cities, 'CityId', :id
+ 
+    #to generate foreign keys add
+    #gem 'foreigner' into Gemfile
+    add_foreign_key(:cities, :countries, :dependent => :delete)
+    add_foreign_key(:cities, :regions, :dependent => :delete)
+    add_foreign_key(:regions, :countries, :dependent => :delete)
+  end
+ 
+end
