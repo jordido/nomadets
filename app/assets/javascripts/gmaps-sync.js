@@ -17,7 +17,7 @@ function initialize(places) {
       scrollwheel: true
     };
 
-	var map = new google.maps.Map(document.getElementById('map-canvas'),
+	map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
 // var coords = new google.maps.LatLng(parseFloat(default_map_center_latitude), parseFloat(default_map_center_longitude));
 	for (x in places) { 
@@ -29,6 +29,7 @@ function initialize(places) {
 	    title: "prueba de pin"
 		});
 	}
+	setBounds(places);
 }
 
 function loadScript() {
@@ -66,4 +67,13 @@ function get_coords() {
     }).always(function() { 
         
     });
+}
+
+function setBounds(markersArray) {
+
+    var bounds = new google.maps.LatLngBounds();
+    for (var i=0; i < markersArray.length; i++) {
+        bounds.extend(markersArray[i]);
+    }
+    map.fitBounds(bounds);
 }
