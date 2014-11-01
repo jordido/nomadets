@@ -8,7 +8,9 @@ function loadMap(places) {
     handler.fitMapToBounds();
   });
 }
+
 $(document).ready(drawMap);
+
 
 function drawMap() {
   $.ajax({
@@ -26,9 +28,12 @@ function drawMap() {
         }
         console.log(places);
         loadMap(places);
+      }
+
 
     }).fail(function(jqXHR, textStatus, errorThrown) {
         alert( textStatus );
+      
 
     }).always(function() { 
         
