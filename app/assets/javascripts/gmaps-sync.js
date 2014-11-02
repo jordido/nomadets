@@ -28,7 +28,7 @@ function initialize(places) {
 	    draggable: true,
 	    map: map,
 	    // icon: 'map-pin-green.png',
-	    title: "prueba de pin"
+	    title: places[i].name
 		});
 		makeInfoWindowEvent(map, infowindow, places[i].name, places[i].url, marker);
 	}

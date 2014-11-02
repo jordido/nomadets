@@ -2,6 +2,7 @@ Rails.application.routes.draw do
    
   root 'users#index'
   
+  get 'map' => 'users#map', as: :map
 
   get 'teachers' => 'users#teachers'
   put 'teachers/:id' => 'users#update', as: :teacher
@@ -22,6 +23,10 @@ Rails.application.routes.draw do
   resources :categories, only: [:create, :index, :show, :edit, :update, :new, :destroy]
 
   get 'reviews_by/:id' =>'reviews#show_by'
+
+  get 'search' =>'search#index'
+  get 'search/update_regions', :as => 'update_regions'
+  get 'search/update_cities', :as => 'update_cities'
 
   patch "/users", to: "users#update"
 

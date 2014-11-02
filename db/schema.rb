@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141101192548) do
+ActiveRecord::Schema.define(version: 20141102193231) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20141101192548) do
   add_index "categories_users", ["category_id"], name: "index_categories_users_on_category_id", using: :btree
   add_index "categories_users", ["user_id"], name: "index_categories_users_on_user_id", using: :btree
 
-  create_table "cities", primary_key: "CityId", force: true do |t|
+  create_table "cities", force: true do |t|
     t.integer "country_id",            null: false
     t.integer "region_id",             null: false
     t.string  "name",       limit: 45, null: false
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20141101192548) do
 
   add_index "cities", ["name"], name: "index_cities_on_name", using: :btree
 
-  create_table "countries", primary_key: "CountryId", force: true do |t|
+  create_table "countries", force: true do |t|
     t.string  "name",                 limit: 50, null: false
     t.string  "fips104",              limit: 2,  null: false
     t.string  "iso2",                 limit: 2,  null: false
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 20141101192548) do
     t.integer  "teacher_id"
   end
 
-  create_table "regions", primary_key: "RegionId", force: true do |t|
+  create_table "regions", force: true do |t|
     t.integer "country_id",            null: false
     t.string  "name",       limit: 45, null: false
     t.string  "code",       limit: 8,  null: false
@@ -107,6 +107,27 @@ ActiveRecord::Schema.define(version: 20141101192548) do
   add_index "reviews", ["author_id"], name: "index_reviews_on_author_id", using: :btree
   add_index "reviews", ["course_id"], name: "index_reviews_on_course_id", using: :btree
   add_index "reviews", ["reviewed_id"], name: "index_reviews_on_reviewed_id", using: :btree
+
+  create_table "searches", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "country_id"
+    t.integer  "region_id"
+    t.integer  "city_id"
+    t.string   "tags"
+    t.string   "search_string"
+    t.integer  "category1_id"
+    t.integer  "category2_id"
+    t.integer  "category3_id"
+    t.integer  "category4_id"
+    t.integer  "category5_id"
+    t.integer  "category6_id"
+    t.integer  "category7_id"
+    t.integer  "category8_id"
+    t.integer  "category9_id"
+    t.integer  "category10_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"

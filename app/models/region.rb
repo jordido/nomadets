@@ -1,4 +1,5 @@
 class Region < ActiveRecord::Base
-	has_many :users
+	belongs_to :country
 	has_many :cities
+ 	has_many :users
 end

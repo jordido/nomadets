@@ -1,3 +1,5 @@
 class City < ActiveRecord::Base
-	has_many :users
+	belongs_to :region
+ 	belongs_to :country
+ 	has_many :users
 end

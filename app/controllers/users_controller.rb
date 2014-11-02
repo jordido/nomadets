@@ -9,6 +9,11 @@ class UsersController < ApplicationController
   #  @users = policy_scope(User)
   end
 
+  def map
+    @users = User.located
+    render :json => @users
+  end
+  
   def teachers
     @users = Teacher.all
     render :index
