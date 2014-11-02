@@ -21,12 +21,13 @@ Rails.application.routes.draw do
   resources :reviews
   resources :users, only: [:create, :index, :show, :edit, :update, :new, :destroy]
   resources :categories, only: [:create, :index, :show, :edit, :update, :new, :destroy]
+  resources :searches, only: [:create, :new, :update]
 
   get 'reviews_by/:id' =>'reviews#show_by'
 
-  get 'search' =>'search#index'
-  get 'search/update_regions', :as => 'update_regions'
-  get 'search/update_cities', :as => 'update_cities'
+  get 'searches' =>'searches#index'
+  get 'searches/update_regions', :as => 'update_regions'
+  get 'searches/update_cities', :as => 'update_cities'
 
   patch "/users", to: "users#update"
 

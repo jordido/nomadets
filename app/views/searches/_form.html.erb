@@ -1,0 +1,20 @@
+<%= form_for @search do |s| %>
+  <div class="form-group">
+    <%= s.label :country_id %>
+    <%= s.collection_select :country_id,  @countries,  :id, :name, {:prompt   => "Select a Country"}, {:id => 'countries_select'} if @countries %>
+  </div>
+  <div class="form-group">
+    <%= s.label :region_id %>
+    <%= s.collection_select :region_id, @regions, :id, :name, {:prompt   => "Select a Region"}, {:id => 'regions_select'} if @regions %>
+  <div class="form-group">
+    <%= s.label :city_id %>
+    <%= s.collection_select :city_id, @cities, :id, :name, {:prompt   => "Select a City"}, {:id => 'cities_select'} if @cities %>
+  </div>
+  <div class="form-group">
+      <%= s.label :category_ids %>
+      <%= s.collection_select :category_ids, Category.all, :id, :name, {}, { :multiple => true} %>
+    </div>
+  <div>
+    <%= s.submit class: "btn btn-success"%>
+  </div>
+<% end %>
