@@ -9,9 +9,9 @@ class Category < ActiveRecord::Base
   	 if parent_category then parent_category.name else "" end
   end
   def <=> another
-    if self.parent_name < another.parent_name
+    if self.name < another.name
       -1
-    elsif self.parent_name < another.parent_name
+    elsif self.name < another.name
       1
     else
       0
