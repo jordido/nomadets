@@ -6,6 +6,15 @@ class Category < ActiveRecord::Base
   has_many :categories, through: :categories
 
   def parent_name
-  	parent_category.name if parent_category
+  	 if parent_category then parent_category.name else "" end
+  end
+  def <=> another
+    if self.parent_name < another.parent_name
+      -1
+    elsif self.parent_name < another.parent_name
+      1
+    else
+      0
+    end
   end
 end
