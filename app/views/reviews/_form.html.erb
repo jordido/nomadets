@@ -5,13 +5,9 @@
 		<% end %>
 	<% end %>
 	<div class="container-fluid">
-	<div class="form-group">
-		<%= r.label :author %>
-		<%= r.select :author_id, User.all.collect{ |u| [u.name, u.id]}%>
-	</div>
-	<div class="form-group">
-		<%= r.label :reviewed %>
-		<%= r.select :reviewed_id, User.all.collect{ |u| [u.name, u.id]}%>
+	<div class="hidden">
+		<%= r.number_field :author_id%>
+		<%= r.number_field :reviewed_id%>
 	</div>
 	<div class="form-group">
 		<%= r.label :comment %>

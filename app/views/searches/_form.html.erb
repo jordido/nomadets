@@ -1,5 +1,9 @@
 <%= form_for @search do |s| %>
   <div class="form-group">
+    <%= s.label :type %>
+    <%= s.select :user_type, User::TYPES.collect{ |t| [t]}%>
+  </div>
+  <div class="form-group">
     <%= s.label :country_id %>
     <%= s.collection_select :country_id,  @countries,  :id, :name, {:prompt   => "Select a Country"}, {:id => 'countries_select'} if @countries %>
   </div>
@@ -11,7 +15,7 @@
     <%= s.collection_select :city_id, @cities, :id, :name, {:prompt   => "Select a City"}, {:id => 'cities_select'} if @cities %>
   </div>
   <div class="form-group">
-      <%= s.label :category_ids %>
+      <%= s.label :categories %>
       <%= s.collection_select :category_ids, Category.all, :id, :name, {}, { :multiple => true} %>
     </div>
   <div>

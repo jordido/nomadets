@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141102203259) do
+ActiveRecord::Schema.define(version: 20141102235953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,18 +120,9 @@ ActiveRecord::Schema.define(version: 20141102203259) do
     t.integer  "city_id"
     t.string   "tags"
     t.string   "search_string"
-    t.integer  "category1_id"
-    t.integer  "category2_id"
-    t.integer  "category3_id"
-    t.integer  "category4_id"
-    t.integer  "category5_id"
-    t.integer  "category6_id"
-    t.integer  "category7_id"
-    t.integer  "category8_id"
-    t.integer  "category9_id"
-    t.integer  "category10_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "user_type"
   end
 
   create_table "users", force: true do |t|
