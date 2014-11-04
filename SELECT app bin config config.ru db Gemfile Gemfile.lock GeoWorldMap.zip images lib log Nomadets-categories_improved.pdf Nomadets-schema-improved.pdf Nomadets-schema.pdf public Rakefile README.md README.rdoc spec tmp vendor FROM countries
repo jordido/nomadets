@@ -1,0 +1,23 @@
+                  List of relations
+ Schema |          Name           |   Type   | Owner 
+--------+-------------------------+----------+-------
+ public | admin_users             | table    | jordi
+ public | admin_users_id_seq      | sequence | jordi
+ public | categories              | table    | jordi
+ public | categories_id_seq       | sequence | jordi
+ public | categories_users        | table    | jordi
+ public | cities                  | table    | jordi
+ public | cities_CityId_seq       | sequence | jordi
+ public | countries               | table    | jordi
+ public | countries_CountryId_seq | sequence | jordi
+ public | courses                 | table    | jordi
+ public | courses_id_seq          | sequence | jordi
+ public | regions                 | table    | jordi
+ public | regions_RegionId_seq    | sequence | jordi
+ public | reviews                 | table    | jordi
+ public | reviews_id_seq          | sequence | jordi
+ public | schema_migrations       | table    | jordi
+ public | users                   | table    | jordi
+ public | users_id_seq            | sequence | jordi
+(18 rows)
+

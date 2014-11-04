@@ -1,31 +1,26 @@
-<%= form_for @review do |r| %>
+<%= form_for @review, remote: true do |r| %>
 	<% if @review.errors.any? %>
 		<% @review.errors.full_messages.each do |message| %>
 			<%= message %>
 		<% end %>
 	<% end %>
 	<div class="container-fluid">
-	<div class="form-group">
-		<%= r.label :author %>
-		<%= r.select :author_id, User.all.collect{ |u| [u.name, u.id]}%>
-	</div>
-	<div class="form-group">
-		<%= r.label :reviewed %>
-		<%= r.select :reviewed_id, User.all.collect{ |u| [u.name, u.id]}%>
-	</div>
-	<div class="form-group">
-		<%= r.label :comment %>
-		<%= r.text_field :comment, class: "form-control", placeholder: "Comment" %>
-	</div>
-	<div class="form-group">
-		<%= r.label :rating %>
-		<%= r.number_field :rating, class: "form-control", placeholder: "Rating" %>
-	</div>
-	<div>
-		<%= r.submit class: "btn btn-success"%>
-	</div>
-	</div>
-
+		<div class="hidden">
+			<%= r.number_field :author_id%>
+			<%= r.number_field :reviewed_id%>
+		</div>
+		<div class="form-group">
+			<%= r.label :comment %>
+			<%= r.text_area :comment, class: "form-control", placeholder: "Comment", size: "60x12" %>
+		</div>
+		<div class="form-group">
+			<%= r.label :rating %>
+			<%= r.number_field :rating, in: 0..5, class: "form-control", placeholder: "Rating" %>
+		</div>
+		<div>
+			<%= r.submit class: "btn btn-success", value: "Publish" %>
+		</div>
+		</div>
 <% end %>
 
 <%= link_to("Back", users_path) %>

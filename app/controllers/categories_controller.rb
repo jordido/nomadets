@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
   before_action :load_category, except: [:index, :new, :create]
 
   def index
-  	@categories = Category.all
+  	@categories = Category.all.sort
   end
 
   def edit

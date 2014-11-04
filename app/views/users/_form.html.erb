@@ -18,20 +18,23 @@
 			<%= u.text_field :address, class: "form-control", placeholder: "Address" %>
 		</div>
 		<div class="form-group">
-			<%= u.label :city %>
-			<%= u.text_field :city, class: "form-control", placeholder: "city" %>
+			<%= u.label :town %>
+			<%= u.text_field :town, class: "form-control", placeholder: "town" %>
 		</div>
 		<div class="form-group">
-			<%= u.label :state %>
-			<%= u.text_field :state, class: "form-control", placeholder: "state" %>
-		</div>
-		<div class="form-group">
-			<%= u.label :country %>
-			<%= u.text_field :country, class: "form-control", placeholder: "country" %>
-		</div>
+	    <%= u.label :country_id %>
+	    <%= u.collection_select :country_id,  @countries,  :id, :name, {:prompt  => "Select a Country"},{:id => 'u_countries_select'}  %>
+  	</div>
+  	<div class="form-group">
+	    <%= u.label :region_id %>
+	    <%= u.collection_select :region_id, @regions, :id, :name, {:prompt  => "Select a region"},{:id => 'u_regions_select'} %>
+	  <div class="form-group">
+	    <%= u.label :city_id %>
+	    <%= u.collection_select :city_id, @cities, :id, :name, {:prompt  => "Select a City"},{:id => 'u_cities_select'} %>
+	  </div>
 		<div class="form-group">
 			<%= u.label :description %>
-			<%= u.text_field :description, class: "form-control", placeholder: "description" %>
+			<%= u.text_area :description, class: "form-control", placeholder: "description", size: "60x12" %>
 		</div>
 		<div class="form-group">
 			<%= u.label :website_url %>
@@ -71,4 +74,29 @@
 <!-- parentesis are optional for passing the parameters. Keep in mind to understand the code!!!! -->
 
 <%= link_to("Back", users_path) %>
+
+ 
+<script>
+    $('#u_countries_select').change(function() {
+      $.ajax({
+        url: "<%= user_regions_path %>",
+        type: "GET",
+        data: {
+          country_id : $('#u_countries_select').val()
+        },
+        dataType: "script"
+      }).done(function (){ 
+            $('#u_regions_select').change(function() {
+              $.ajax({
+                url: "<%= user_cities_path %>",
+                type: "GET",
+                data: {
+                  region_id : $('#u_regions_select').val()
+                },
+                dataType: "script"
+              });
+            });
+          });
+    });   
+</script>
 

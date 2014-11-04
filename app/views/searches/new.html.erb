@@ -1,0 +1,26 @@
+<%= render 'form' %>
+ 
+<script>
+    $('#countries_select').change(function() {
+      $.ajax({
+        url: "<%= search_regions_path %>",
+        type: "GET",
+        data: {
+          country_id : $('#countries_select').val()
+        },
+        dataType: "script"
+      }).done(function (){ 
+            $('#regions_select').change(function() {
+              $.ajax({
+                url: "<%= search_cities_path %>",
+                type: "GET",
+                data: {
+                  region_id : $('#regions_select').val()
+                },
+                dataType: "script"
+              });
+            });
+          });
+    });   
+</script>
+
