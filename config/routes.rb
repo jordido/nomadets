@@ -27,8 +27,11 @@ Rails.application.routes.draw do
   get 'reviews_by/:id' =>'reviews#show_by'
 
   get 'searches' =>'searches#new'
-  get 'update_regions', to: 'searches#update_regions', :as => 'update_regions'
-  get 'update_cities', to: 'searches#update_cities', :as => 'update_cities'
+  get 'searches/update_regions', to: 'searches#update_regions', :as => 'search_regions'
+  get 'searches/update_cities', to: 'searches#update_cities', :as => 'search_cities'
+  get 'users/update_regions', to: 'users#update_regions', :as => 'user_regions'
+  get 'users/update_cities', to: 'users#update_cities', :as => 'user_cities'
+  
   post 'search' => 'searches#create', as: :search_users
 
   patch "/users", to: "users#update"

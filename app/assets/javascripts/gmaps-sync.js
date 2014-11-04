@@ -57,7 +57,8 @@ function get_coords() {
         for (i in data) { 
           var place = {};
           place["id"] = data[i].id
-          place["url"] = data[i].website_url;
+//          place["url"] = data[i].website_url;
+          place["url"] = "show/" + data[i].id;
           place["name"] = data[i].name + " " + data[i].last_name 
           // place["lat"] = data[x].latitude;
           // place["lng"] = data[x].longitude;

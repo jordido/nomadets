@@ -18,9 +18,9 @@
 			<td><%= @user.last_name %></td>
 			<td><%= @user.email %></td>
 			<td><%= @user.address %></td>
-			<td><%= @user.city %></td>
-			<td><%= @user.region %></td>
-			<td><%= @user.country %></td>
+			<td><%= @user.city.name if @user.city %></td>
+			<td><%= @user.region.name if @user.region %></td>
+			<td><%= @user.country.name if @user.country %></td>
 			<td><%= @user.latitude %></td>
 			<td><%= @user.longitude %></td>
 			<td><%= @user.website_url %></td>

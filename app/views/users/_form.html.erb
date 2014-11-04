@@ -19,18 +19,18 @@
 		</div>
 		<div class="form-group">
 			<%= u.label :town %>
-			<%= u.text_field :town, class: "form-control", placeholder: "city" %>
+			<%= u.text_field :town, class: "form-control", placeholder: "town" %>
 		</div>
 		<div class="form-group">
 	    <%= u.label :country_id %>
-	    <%= u.collection_select :country_id,  @countries,  :id, :name, {:prompt  => "Select a Country"}, {:id => 'countries_select'}, :include_blank => true if @countries %>
+	    <%= u.collection_select :country_id,  @countries,  :id, :name, {:prompt  => "Select a Country"},{:id => 'u_countries_select'}  %>
   	</div>
   	<div class="form-group">
 	    <%= u.label :region_id %>
-	    <%= u.collection_select :region_id, @regions, :id, :name, {:prompt   => "Select a Region"}, {:id => 'regions_select'} if @regions %>
+	    <%= u.collection_select :region_id, @regions, :id, :name, {:prompt  => "Select a region"},{:id => 'u_regions_select'} %>
 	  <div class="form-group">
 	    <%= u.label :city_id %>
-	    <%= u.collection_select :city_id, @cities, :id, :name, {:prompt   => "Select a City"}, {:id => 'cities_select'} if @cities %>
+	    <%= u.collection_select :city_id, @cities, :id, :name, {:prompt  => "Select a City"},{:id => 'u_cities_select'} %>
 	  </div>
 		<div class="form-group">
 			<%= u.label :description %>
@@ -77,21 +77,21 @@
 
  
 <script>
-    $('#countries_select').change(function() {
+    $('#u_countries_select').change(function() {
       $.ajax({
-        url: "<%= update_regions_path %>",
+        url: "<%= user_regions_path %>",
         type: "GET",
         data: {
-          country_id : $('#countries_select').val()
+          country_id : $('#u_countries_select').val()
         },
         dataType: "script"
       }).done(function (){ 
-            $('#regions_select').change(function() {
+            $('#u_regions_select').change(function() {
               $.ajax({
-                url: "<%= update_cities_path %>",
+                url: "<%= user_cities_path %>",
                 type: "GET",
                 data: {
-                  region_id : $('#regions_select').val()
+                  region_id : $('#u_regions_select').val()
                 },
                 dataType: "script"
               });

@@ -20,15 +20,20 @@ class SearchesController < ApplicationController
   end
 
   def search_users
-    @users = []
-    @search.category_ids.each do |c|
-      cat = Category.find(c)
+    if !@search.category_ids[0]
+      @users = User.all.to_a
+    else
+      @users = []
+    end
+    @search.category_ids.each  do |category|
+      cat = Category.find(category)
       if cat
         @users_in_cat = cat.users
         @users = (@users + @users_in_cat).uniq
       end
     end
     
+    @users.keep_if { |u| u.type == @search.user_type }
     # if (@search.user_type == "teachers") 
     #   @users = Teacher.all
     # elsif (@search.user_type == "venues")  
@@ -37,15 +42,20 @@ class SearchesController < ApplicationController
     #   @users = Student.all
     # else @users = User.all
     # end
-    if @search.city_id  
-       @users.keep_if { |u| u.city_id == @search.city_id }    
-    elsif @search.region_id     
-       @users.keep_if { |u| u.region_id == @search.region_id }
-    elsif @search.country_id     
-      @users.keep_if { |u| u.country_id == @search.country_id }
+    
+    city_search = (@search.city_id.nil?) ? 0 : @search.city_id
+    region_search = (@search.region_id.nil?) ? 0 : @search.region_id
+    country_search = (@search.country_id.nil?) ? 0 : @search.country_id
+    
+    if city_search > 0 
+        @users.keep_if { |u| u.city_id == city_search }
+    elsif region_search > 0    
+          @users.keep_if { |u| u.region_id == region_search }
+        elsif country_search > 0   
+           @users.keep_if { |u| u.country_id == country_search }
     end
-  
-    render 'users/index'
+    render '/users/index'
+
   end
 
   def map
@@ -81,5 +91,4 @@ class SearchesController < ApplicationController
   def search_params
     params.require(:search).permit(:user_type, :country_id, :region_id, :city_id, :search_string, :tags, category_ids:[])
   end
-
 end

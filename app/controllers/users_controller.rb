@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
 	before_action :load_user, only: [:edit, :update, :show, :destroy]
   before_action :load_geo_data, only: [:edit, :update, :new]
+
   def index
   	@users = User.all
   #  @users = policy_scope(User)
@@ -74,7 +75,6 @@ class UsersController < ApplicationController
     if params[:country_id] > 0 then country = Country.find(params[:country_id]) end
     
     full_address = [address, :town, city.name, region.name, country.name].compact.join(', ')
-    flash[:notice] = full_address
     return full_address
   end
   
@@ -118,7 +118,7 @@ class UsersController < ApplicationController
 
   def load_geo_data
     @countries = Country.all
-    @regions = []
-    @cities = []
+    @regions = Region.all
+    @cities = City.all
   end
 end
