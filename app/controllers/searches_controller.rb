@@ -37,11 +37,11 @@ class SearchesController < ApplicationController
     #   @users = Student.all
     # else @users = User.all
     # end
-    if !@search.city_id.nil?  
+    if @search.city_id  
        @users.keep_if { |u| u.city_id == @search.city_id }    
-    elsif @search.region_id > 0      
+    elsif @search.region_id     
        @users.keep_if { |u| u.region_id == @search.region_id }
-    elsif @search.country_id  > 0     
+    elsif @search.country_id     
       @users.keep_if { |u| u.country_id == @search.country_id }
     end
   
