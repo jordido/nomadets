@@ -4,11 +4,17 @@ class UsersController < ApplicationController
   include Pundit
 
 	before_action :load_user, only: [:edit, :update, :show, :destroy]
+
   before_action :load_geo_data, only: [:edit, :update, :new]
 
   def index
-  	@users = User.all
-  #  @users = policy_scope(User)
+    @users = User.all
+    #  @users = policy_scope(User)
+  end
+
+  def map
+    @users = User.located
+    render :json => @users
   end
 
   def map
@@ -121,4 +127,5 @@ class UsersController < ApplicationController
     @regions = Region.all
     @cities = City.all
   end
+
 end

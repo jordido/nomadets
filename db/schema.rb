@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20141102235953) do
 
   # These are extensions that must be enabled in order to support this database
@@ -144,6 +145,7 @@ ActiveRecord::Schema.define(version: 20141102235953) do
     t.integer  "country_id"
     t.integer  "region_id"
     t.integer  "city_id"
+
   end
 
   add_index "users", ["city_id"], name: "index_users_on_city_id", using: :btree

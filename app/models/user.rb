@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+
 	mount_uploader :picture, UserPictureUploader
 	TYPES = ["Teacher","Venue","Student"]
 	has_secure_password
@@ -18,6 +19,9 @@ class User < ActiveRecord::Base
 	geocoded_by :full_street_address   # can also be an IP address
 	after_validation :geocode          # auto-fetch coordinates
 	
+	reverse_geocoded_by :latitude, :longitude
+	after_validation :reverse_geocode  # auto-fetch address
+
 	def full_street_address
 		city = (self.city) ? self.city.name : ""
 		region = (self.region) ? self.region.name : ""
@@ -26,5 +30,5 @@ class User < ActiveRecord::Base
 	end
 
 	scope :located, -> { where.not(latitude: nil).where.not(longitude: nil) }
-	
+
 end

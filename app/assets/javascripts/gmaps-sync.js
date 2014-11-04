@@ -27,8 +27,8 @@ function initialize(places) {
 	    position: places[i].coords,
 	    draggable: true,
 	    map: map,
-	    // icon: 'map-pin-green.png',
 	    title: places[i].name
+
 		});
 		makeInfoWindowEvent(map, infowindow, places[i].name, places[i].url, marker);
 	}
@@ -53,16 +53,11 @@ function get_coords() {
 
     }).done(function(data,textStatus, jqXHR) {
     		var i;
-//        var places = [];
         for (i in data) { 
           var place = {};
           place["id"] = data[i].id
-//          place["url"] = data[i].website_url;
           place["url"] = "show/" + data[i].id;
           place["name"] = data[i].name + " " + data[i].last_name 
-          // place["lat"] = data[x].latitude;
-          // place["lng"] = data[x].longitude;
-//         var coords = new google.maps.LatLng(data[x].latitude, data[x].longitude);
           place["coords"] = new google.maps.LatLng(data[i].latitude, data[i].longitude);
           places.push(place);
         }

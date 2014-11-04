@@ -8,5 +8,7 @@ FactoryGirl.define do
 		description { Faker::Lorem.sentence }
 		website_url { Faker::Internet.url }
 		password_digest {Faker::Internet.password }
+		latitude {Faker::Address.latitude}
+		longitude {Faker::Address.longitude}
 	end
 end

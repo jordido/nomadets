@@ -64,14 +64,11 @@
 			<%= u.label :category_ids %>
 			<%= u.collection_select :category_ids, Category.all, :id, :name, {}, { :multiple => true} %>
 		</div>
-		<div>
+		<div class="form-group">
 			<%= u.submit class: "btn btn-success"%>
 		</div>
 	</div>
-
 <% end %>
-
-<!-- parentesis are optional for passing the parameters. Keep in mind to understand the code!!!! -->
 
 <%= link_to("Back", users_path) %>
 

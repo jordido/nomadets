@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'users#index'
   
   get 'map' => 'users#map', as: :map
+
   get '/search/map' => 'searches#map', as: :search_map
 
   get 'teachers' => 'users#teachers'
