@@ -1,23 +1,56 @@
 class SearchesController < ApplicationController
-  def index
+  def new
     @countries  = Country.all
     @regions = []
     @cities = []
     @search = Search.new
   end
 
-   def new
-    @search = Search.new
-  end
-
-
   def create
     @search = Search.new(search_params)
     if @search.save
-      redirect_to searches_url
+      search_users
     else
-      render :new
+      flash[:alert] = "Search unsuccessful"
+      @countries  = Country.all
+      @regions = Region.where(id: @search.region_id)
+      @cities = (@search.city_id > 0) ? City.where(id: @search.city_id) : []
+      render 'new'
     end
+  end
+
+  def search_users
+    @users = []
+    @search.category_ids.each do |c|
+      cat = Category.find(c)
+      if cat
+        @users_in_cat = cat.users
+        @users = (@users + @users_in_cat).uniq
+      end
+    end
+    
+    # if (@search.user_type == "teachers") 
+    #   @users = Teacher.all
+    # elsif (@search.user_type == "venues")  
+    #   @users = Venue.all
+    # elsif (@search.user_type == "students") 
+    #   @users = Student.all
+    # else @users = User.all
+    # end
+    if !@search.city_id.nil?  
+       @users.keep_if { |u| u.city_id == @search.city_id }    
+    elsif @search.region_id > 0      
+       @users.keep_if { |u| u.region_id == @search.region_id }
+    elsif @search.country_id  > 0     
+      @users.keep_if { |u| u.country_id == @search.country_id }
+    end
+  
+    render 'users/index'
+  end
+
+  def map
+    @users = @users.located
+    @users.to_json
   end
 
   def update_regions
@@ -46,7 +79,7 @@ class SearchesController < ApplicationController
 
   private
   def search_params
-    params.require(:search).permit(:country_id, :region_id, :city_id, :search_string, :tags, category_ids:[])
+    params.require(:search).permit(:user_type, :country_id, :region_id, :city_id, :search_string, :tags, category_ids:[])
   end
 
 end

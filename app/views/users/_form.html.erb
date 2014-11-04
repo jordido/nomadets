@@ -22,28 +22,19 @@
 			<%= u.text_field :town, class: "form-control", placeholder: "city" %>
 		</div>
 		<div class="form-group">
-			<%= u.label :country_id %>
-			<%= u.select :country_id, Country.all.collect{ |country| [country.name, country.id]}, :include_blank => true %>
-		</div>
-		<div class="form-group">
-			<%= u.label :region_id %>
-			<%= u.select :region_id, u.country.regions.all.collect{ |region| [region.name, region.id]}, :include_blank => true %>
-		</div>
-		<div class="form-group">
-			<%= u.label :city_id %>
-			<%= u.select :city_id, u.region.cities.all.collect{ |ct| [ct.name, ct.id]}, :include_blank => true %>
-		</div>
-		<div class="form-group">
-			<%= u.label :state %>
-			<%= u.text_field :state, class: "form-control", placeholder: "state" %>
-		</div>
-		<div class="form-group">
-			<%= u.label :country %>
-			<%= u.text_field :country, class: "form-control", placeholder: "country" %>
-		</div>
+	    <%= u.label :country_id %>
+	    <%= u.collection_select :country_id,  @countries,  :id, :name, {:prompt  => "Select a Country"}, {:id => 'countries_select'}, :include_blank => true if @countries %>
+  	</div>
+  	<div class="form-group">
+	    <%= u.label :region_id %>
+	    <%= u.collection_select :region_id, @regions, :id, :name, {:prompt   => "Select a Region"}, {:id => 'regions_select'} if @regions %>
+	  <div class="form-group">
+	    <%= u.label :city_id %>
+	    <%= u.collection_select :city_id, @cities, :id, :name, {:prompt   => "Select a City"}, {:id => 'cities_select'} if @cities %>
+	  </div>
 		<div class="form-group">
 			<%= u.label :description %>
-			<%= u.text_field :description, class: "form-control", placeholder: "description" %>
+			<%= u.text_area :description, class: "form-control", placeholder: "description", size: "60x12" %>
 		</div>
 		<div class="form-group">
 			<%= u.label :website_url %>
@@ -83,4 +74,29 @@
 <!-- parentesis are optional for passing the parameters. Keep in mind to understand the code!!!! -->
 
 <%= link_to("Back", users_path) %>
+
+ 
+<script>
+    $('#countries_select').change(function() {
+      $.ajax({
+        url: "<%= update_regions_path %>",
+        type: "GET",
+        data: {
+          country_id : $('#countries_select').val()
+        },
+        dataType: "script"
+      }).done(function (){ 
+            $('#regions_select').change(function() {
+              $.ajax({
+                url: "<%= update_cities_path %>",
+                type: "GET",
+                data: {
+                  region_id : $('#regions_select').val()
+                },
+                dataType: "script"
+              });
+            });
+          });
+    });   
+</script>
 

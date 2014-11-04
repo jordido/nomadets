@@ -1,5 +1,5 @@
 <div class="reviewsBox">
-  <%= render 'show_description' %>
+  <%= render '/users/show_description' %>
   <div class="detailBox">
     <div class="titleBox">
       <label>Reviews about <%= @user.name %></label>
@@ -30,23 +30,19 @@
         <% @review = Review.new %>
         <% @review.author_id = current_user.id %>
         <% @review.reviewed_id = @user.id %>
-        <%= form_for @review, :html => {:class => "form-inline", :role => "form"} do |r| %>
+        <%= form_for @review, :html => {:class => "form-inline", :role => "form"} do |r| %>  
           <div class="hidden">
             <%= r.number_field :author_id %>
             <%= r.number_field :reviewed_id %>
           </div>
-          <%= r.label :comment %>
-          <%= r.text_field :comment, class: "form-control", placeholder: "your review" %>
+          <%= r.text_area :comment, class: "form-control", placeholder: "your comment", size: "40x5" %>
+          <%= r.number_field :rating, in: 0..5, class: "form-control", placeholder: "rate it", size: "5x1" %>
 
-          <%= r.label :rating %>
-          <%= r.number_field :rating, class: "form-control", placeholder: "your rating" %>
-
-<!--           <%= r.submit class: "btn btn-default"%>  -->  
+          <!-- <%= r.submit class: "btn btn-default"%>    -->
         <button class="btn btn-default">Add</button> 
         <% end %>
-<!--         </form> -->
       <% end %>
     </div>
   </div>
-  <%= render 'show_categories' %>
+  <%= render '/users/show_categories' %>
 </div>

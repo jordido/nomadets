@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'users#index'
   
   get 'map' => 'users#map', as: :map
+  get '/search/map' => 'searches#map', as: :search_map
 
   get 'teachers' => 'users#teachers'
   put 'teachers/:id' => 'users#update', as: :teacher
@@ -25,9 +26,10 @@ Rails.application.routes.draw do
 
   get 'reviews_by/:id' =>'reviews#show_by'
 
-  get 'searches' =>'searches#index'
-  get 'searches/update_regions', :as => 'update_regions'
-  get 'searches/update_cities', :as => 'update_cities'
+  get 'searches' =>'searches#new'
+  get 'update_regions', to: 'searches#update_regions', :as => 'update_regions'
+  get 'update_cities', to: 'searches#update_cities', :as => 'update_cities'
+  post 'search' => 'searches#create', as: :search_users
 
   patch "/users", to: "users#update"
 

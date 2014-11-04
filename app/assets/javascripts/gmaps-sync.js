@@ -61,7 +61,7 @@ function get_coords() {
           place["name"] = data[i].name + " " + data[i].last_name 
           // place["lat"] = data[x].latitude;
           // place["lng"] = data[x].longitude;
-//          var coords = new google.maps.LatLng(data[x].latitude, data[x].longitude);
+//         var coords = new google.maps.LatLng(data[x].latitude, data[x].longitude);
           place["coords"] = new google.maps.LatLng(data[i].latitude, data[i].longitude);
           places.push(place);
         }

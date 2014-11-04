@@ -19,7 +19,10 @@ class User < ActiveRecord::Base
 	after_validation :geocode          # auto-fetch coordinates
 	
 	def full_street_address
-  	[address, city, region, country].compact.join(', ')
+		city = (self.city) ? self.city.name : ""
+		region = (self.region) ? self.region.name : ""
+		country = (self.country) ? self.country.name : ""
+  	[address, town, city, region, country].compact.join(', ')
 	end
 
 	scope :located, -> { where.not(latitude: nil).where.not(longitude: nil) }

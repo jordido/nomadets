@@ -1,4 +1,4 @@
-<%= form_for @search do |s| %>
+<%= form_for @search, url: search_users_path, method: :post do |s| %>
   <div class="form-group">
     <%= s.label :type %>
     <%= s.select :user_type, User::TYPES.collect{ |t| [t]}%>
@@ -9,15 +9,15 @@
   </div>
   <div class="form-group">
     <%= s.label :region_id %>
-    <%= s.collection_select :region_id, @regions, :id, :name, {:prompt   => "Select a Region"}, {:id => 'regions_select'} if @regions %>
+    <%= s.collection_select :region_id, @regions, :id, :name, {:prompt   => "Select a Region"}, {:id => 'regions_select'}  %>
   <div class="form-group">
     <%= s.label :city_id %>
-    <%= s.collection_select :city_id, @cities, :id, :name, {:prompt   => "Select a City"}, {:id => 'cities_select'} if @cities %>
+    <%= s.collection_select :city_id, @cities, :id, :name, {:prompt   => "Select a City"}, {:id => 'cities_select'} %>
   </div>
   <div class="form-group">
       <%= s.label :categories %>
       <%= s.collection_select :category_ids, Category.all, :id, :name, {}, { :multiple => true} %>
-    </div>
+  </div>
   <div>
     <%= s.submit class: "btn btn-success"%>
   </div>
