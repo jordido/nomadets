@@ -2,46 +2,67 @@
 <html>
 <head>
   <title>Nomadets</title>
-
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+  <![endif]-->
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-			
   <%= csrf_meta_tags %>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">	
+	<link href='http://fonts.googleapis.com/css?family=Gochi+Hand' rel='stylesheet' type='text/css'>	
+
 </head>
 
 <body>	
+<!-- 		<div class="page-header">
+		 	<img src="/assets/nomadets_logo.jpg" id="logo" class="logo">
+-->
+  <div class="container-fluid">
+
 	<% flash.map do |key, msg| %>
     <%= content_tag :div, msg, id: key %>
   <% end %>
- 	<div class="container">
-	 	<header>
-		 	<img src="/assets/nomadets_logo.jpg" id="logo" class="logo">
-		 	<div class="header-title">
-		  	<h1>Welcome to Nomadets</h1>
-		  </div> 
-	  </header>
+      <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
 	  <nav class="navbar navbar-default" role="navigation">
-	  	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	      <ul class="nav navbar-nav">	  	
-					<li><%= link_to "Teachers", teachers_path %></li>
-					<li><%= link_to "Venues", venues_path %></li>
-					<li><%= link_to "Students", students_path %></li>
-					<li><%= link_to "Categories", categories_path %></li>
-					<li><%= link_to "Search", searches_path %></li>
-					<% if current_user %>
-						<li><%= link_to "Reviews", reviews_by_path(current_user.id) %></li>
-						<li><%= link_to "Profile", user_path(current_user.id) %></li>
-						<li><%= link_to "Settings", edit_user_path(current_user.id) %></li>
-					<%end%>
-				</ul>
-	    	<% if current_user %>		
-					<%= render "users/logout_form" %>					
-					<% else %>						
-					<%= render "users/login_form" %>				
-				<% end %>
-			</div>
+	    <ul class="nav navbar-nav navbar-collapse" id="menu_borde">
+	  		<li class="logo-text"><%= link_to "Nomadets", root_path %></li>
+				<li><%= link_to "Teachers", teachers_path %></li>
+				<li><%= link_to "Venues", venues_path %></li>
+				<li><%= link_to "Students", students_path %></li>
+				<li><%= link_to "Categories", categories_path %></li>
+				<li><%= link_to "Search", searches_path %></li>
+				<% if current_user %>
+					<li><%= link_to "Reviews", reviews_by_path(current_user.id) %></li>
+					<li><%= link_to "Profile", user_path(current_user.id) %></li>
+					<li><%= link_to "Settings", edit_user_path(current_user.id) %></li>
+				<%end%>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li class="login">
+	  			<% if current_user %>		
+						<%= render "users/logout_form" %>					
+						<% else %>						
+						<%= render "users/login_form" %>									
+					<% end %>
+				</li>
+				<% if !current_user %>
+					<li class="login">	
+					<%= link_to 'Sign in', new_user_path %>	
+					</li>
+				<%end%>
+			</ul>
 		</nav>
-		<%= yield %>
+		</div>
+	</div>
+	</div>
+	<div class="panel panel-default">
+
+			<%= yield %>
+
+	</div>
+
+	<div class="panel-footer">Nomadets 2014</div>
 
 </body>
 

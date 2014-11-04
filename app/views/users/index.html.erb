@@ -1,55 +1,55 @@
-<h4>Users list</h4>
-
-<div>
-	<%= link_to "New User", new_user_path %>
-</div>
-
-	<% @users.each do |u| %>
-	<table class="table table_stripted">
-			<th><%= u.type %></th>
-			<th>Id</th>
-			<th>First name</th>
-			<th>Last name</th>
-			<th>Email</th>
-			<th>Address</th>
-			<th>Town</th>
-			<th>City</th>
-			<th>region</th>
-			<th>Country</th>
-			<td>Lattitude</td>
-			<td>Longitude</td>	
-			<th>website</th>
-		<tr>
-			<td><%= image_tag u.picture, :class => "userImage"%></td>
-			<td><%= u.id %></td>
-			<td><%= u.name %></td>
-			<td><%= u.last_name %></td>
-			<td><%= u.email %></td>
-			<td><%= u.address %></td>
-			<td><%= u.town %></td>
-			<td><%= u.city.name if u.city %></td>
-			<td><%= u.region.name if u.region %></td>
-			<td><%= u.country.name if u.country %></td>
-			<td><%= u.latitude %></td>
-			<td><%= u.longitude %></td>			
-			<td><%= u.website_url %></td>
-			<td>
-				<%= link_to "Show", user_path(u) %>
-
-					<%= link_to "Edit", edit_user_path(u) %>
-					<%= link_to "Delete", user_path(u), method: :delete, data: { confirm: 'Are you sure?' } %>
-
-			</td>				
-		</tr>
-		</table>
+<% @users.each do |u| %>
+	<div class="row">
+   	<div class="col-md-8">
+			<div class="panel-body">
+				<table class="table table_stripted">
+					<thead class = "panel-heading">
+						<tr>	
+							<th><%= u.type %></th>
+							<th>Id</th>
+							<th>First name</th>
+							<th>Last name</th>
+							<th>Town</th>
+							<th>City</th>
+							<th>region</th>
+							<th>Country</th>	
+							<th>website</th>
+							<th>		
+								<%= link_to "Show", user_path(u) %>
+							</th>
+							<% if admin %>
+								<th>
+								<%= link_to "Edit", edit_user_path(u) %>
+								</th>
+								<th>
+									<%= link_to "Delete", user_path(u), method: :delete, data: { confirm: 'Are you sure?' } %>
+								</th>
+							<% end %>
+						</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<td><%= image_tag u.picture, :class => "userImage"%></td>
+						<td><%= u.id %></td>
+						<td><%= u.name %></td>
+						<td><%= u.last_name %></td>
+						<td><%= u.town %></td>
+						<td><%= u.city.name if u.city %></td>
+						<td><%= u.region.name if u.region %></td>
+						<td><%= u.country.name if u.country %></td>		
+						<td><%= u.website_url %></td>	
+					</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+    <div class="col-md-4">
 			<% @user = u %>
-			<%= render '/users/show_reviews'%>
-
-
+   		<%= render '/users/show_reviews'%>
+   	</div>
+	</div>
 	<% end %>
-
+	<div class="col-md-12">
 	<%= render '/users/load_map'%>
-
-</div>
-
+	</div>
 

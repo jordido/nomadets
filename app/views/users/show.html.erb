@@ -1,6 +1,6 @@
-<h4>User</h4>
-
-<table class="table table_stripted">
+<div class="panel-body">
+	<table class="table table_stripted">
+		<thead class = "panel-heading">
 			<th><%= @user.type %></th>
 			<th>First name</th>
 			<th>Last name</th>
@@ -12,27 +12,31 @@
 			<td>Latitude</td>
 			<td>Longitude</td>
 			<td>Website</td>
-		<tr>
-			<td><%= image_tag @user.picture, :class => "userImage"%></td>
-			<td><%= @user.name %></td>
-			<td><%= @user.last_name %></td>
-			<td><%= @user.email %></td>
-			<td><%= @user.address %></td>
-			<td><%= @user.city.name if @user.city %></td>
-			<td><%= @user.region.name if @user.region %></td>
-			<td><%= @user.country.name if @user.country %></td>
-			<td><%= @user.latitude %></td>
-			<td><%= @user.longitude %></td>
-			<td><%= @user.website_url %></td>
-			<% if admin %>
-			<td>
-				<%= link_to "Edit", edit_user_path(u) %>
-				<%= link_to "Delete", user_path(u), method: :delete, data: { confirm: 'Are you sure?' } %>
-				</td>	
-			<% end %>		
-		</tr>
-</table>
+		</thead>
+		<tbody>
+			<tr>
+				<td><%= image_tag @user.picture, :class => "userImage"%></td>
+				<td><%= @user.name %></td>
+				<td><%= @user.last_name %></td>
+				<td><%= @user.email %></td>
+				<td><%= @user.address %></td>
+				<td><%= @user.city.name if @user.city %></td>
+				<td><%= @user.region.name if @user.region %></td>
+				<td><%= @user.country.name if @user.country %></td>
+				<td><%= @user.latitude %></td>
+				<td><%= @user.longitude %></td>
+				<td><%= @user.website_url %></td>
+				<% if admin %>
+				<td>
+					<%= link_to "Edit", edit_user_path(u) %>
+					<%= link_to "Delete", user_path(u), method: :delete, data: { confirm: 'Are you sure?' } %>
+					</td>	
+				<% end %>		
+			</tr>
+		</tbody>
+	</table>
+</div>
 <br/>
-
-<%= link_to "Back", users_path %>
 <%= render 'show_reviews' %>
+<%= link_to "Back", users_path %>
+

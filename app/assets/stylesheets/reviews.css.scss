@@ -75,3 +75,19 @@
     border-top:1px dotted #bbb;
     padding:10px;
 }
+
+
+//  Styles for stars like in http://bootsnipp.com/snippets/featured/expanding-review-and-rating-box
+
+.animated {
+    -webkit-transition: height 0.2s;
+    -moz-transition: height 0.2s;
+    transition: height 0.2s;
+}
+
+.stars
+{
+    margin: 20px 0;
+    font-size: 24px;
+    color: #d17581;
+}
