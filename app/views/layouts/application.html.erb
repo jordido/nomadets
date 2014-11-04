@@ -10,7 +10,6 @@
   <%= csrf_meta_tags %>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">	
 	<link href='http://fonts.googleapis.com/css?family=Gochi+Hand' rel='stylesheet' type='text/css'>	
-
 </head>
 
 <body>	
@@ -18,11 +17,10 @@
 		 	<img src="/assets/nomadets_logo.jpg" id="logo" class="logo">
 -->
   <div class="container-fluid">
-
-	<% flash.map do |key, msg| %>
-    <%= content_tag :div, msg, id: key %>
-  <% end %>
-      <div class="navbar navbar-fixed-top">
+		<% flash.map do |key, msg| %>
+	    <%= content_tag :div, msg, id: key %>
+	  <% end %>
+  <div class="navbar navbar-fixed-top">
 	<div class="navbar-inner">
 	  <nav class="navbar navbar-default" role="navigation">
 	    <ul class="nav navbar-nav navbar-collapse" id="menu_borde">
@@ -57,13 +55,17 @@
 	</div>
 	</div>
 	<div class="panel panel-default">
+		<div class="panel-body">
 
 			<%= yield %>
-
+			
+		</div>	
+		<div class="panel-footer">		
+			<h6>Copyright Nomadets 2014 </h6>
+	</div>	
 	</div>
-
-	<div class="panel-footer">Nomadets 2014</div>
-
+	<div class="col-md-12">
+			<%= render '/users/load_map'%>
+	</div>
 </body>
-
 </html>
