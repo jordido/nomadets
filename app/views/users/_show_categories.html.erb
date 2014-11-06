@@ -1,3 +1,6 @@
+
+  <label><%= @user.type %> for</label>
+
 <ul class="commentList">
 <%if @user.categories.count > 0 %>
     <%  @user.categories.each do |c| %>
@@ -13,7 +16,7 @@
  <%else %>
     <li>
         <div class="commentText">
-            <p class="">This user has no categories</p> 
+            <p class="">Still no categories</p> 
         </div>
     </li>
 <% end %>

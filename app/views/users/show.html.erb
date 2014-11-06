@@ -9,9 +9,9 @@
 			<th>City</th>
 			<th>Region</th>
 			<th>Country</th>
-			<td>Latitude</td>
-			<td>Longitude</td>
-			<td>Website</td>
+			<th>Latitude</th>
+			<th>Longitude</th>
+			<th>Website</th>
 		</thead>
 		<tbody>
 			<tr>
@@ -35,8 +35,13 @@
 			</tr>
 		</tbody>
 	</table>
-</div>
-<br/>
-<%= render 'show_reviews' %>
+	<br/>
+	<div>
+		<%= @user.short_description %>
+	</div>
+<%= render '/users/show_description' %>
+<%= render '/users/show_reviews' %>
 <%= link_to "Back", users_path %>
+</div>
+
 

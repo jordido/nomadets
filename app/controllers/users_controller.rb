@@ -16,12 +16,6 @@ class UsersController < ApplicationController
     @users = User.located
     render :json => @users
   end
-
-  def map
-    @users = User.located
-    render :json => @users
-#    render :json => @users
-  end
   
   def teachers
     @users = Teacher.all
@@ -75,6 +69,20 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  
+  def update_regions
+    # updates regions and cities based on country selected
+    country = Country.find(params[:country_id])
+    # map to name and id for use in our options_for_select
+    @regions = country.regions.map{|r| [r.name, r.id]}.insert(0, "Select a region")
+  end
+
+  def update_cities
+    # updates cities based on region selected
+    region = Region.find(params[:region_id])
+    @cities = region.cities.map{|c| [c.name, c.id]}.insert(0, "Select a city")
+  end
+
   def full_street_address
     if params[:city_id] > 0 then city = City.find(params[:city_id]) end
     if params[:region_id] > 0 then region = Region.find(params[:region_id]) end
@@ -85,6 +93,7 @@ class UsersController < ApplicationController
   end
   
   private
+
   def deny_access
     render text: "Your are not authorized to perform this action", status: :unauthorized
   end
@@ -92,28 +101,26 @@ class UsersController < ApplicationController
   def user_params
     if !params[:user].nil?
       @type_of_user = "user" 
-  	  params.require(:user).permit(:name, :last_name, :password, :password_confirmation, :email, :address, :type, :town, :city_id, :region_id, :country_id, :description, :website_url, :category_id, :picture, category_ids: []) 
+  	  params.require(:user).permit(:name, :last_name, :password, :password_confirmation, :email, :address, :type, :town, :city_id, :region_id, :country_id, :description, :short_description, :website_url, :category_id, :picture, category_ids: []) 
          
     elsif !params[:teacher].nil?
       @type_of_user = "teacher"
-      params.require(:teacher).permit(:name, :last_name, :password, :password_confirmation, :email, :address, :type, :town, :city_id, :region_id, :country_id, :description, :website_url, :category_id, :picture, category_ids: [])
+      params.require(:teacher).permit(:name, :last_name, :password, :password_confirmation, :email, :address, :type, :town, :city_id, :region_id, :country_id, :description, :short_description, :website_url, :category_id, :picture, category_ids: [])
                
     elsif !params[:student].nil?
       @type_of_user = "student" 
-      params.require(:student).permit(:name, :last_name, :password, :password_confirmation, :email, :address, :type, :town, :city_id, :region_id, :country_id, :description, :website_url, :category_id, :picture, category_ids: []) 
+      params.require(:student).permit(:name, :last_name, :password, :password_confirmation, :email, :address, :type, :town, :city_id, :region_id, :country_id, :description, :short_description, :website_url, :category_id, :picture, category_ids: []) 
          
     elsif !params[:venue].nil?
       
       @type_of_user = "venue" 
-      params.require(:venue).permit(:name, :last_name, :password, :password_confirmation, :email, :address, :type, :town, :city_id, :region_id, :country_id, :description, :website_url, :category_id, :picture, category_ids: []) 
+      params.require(:venue).permit(:name, :last_name, :password, :password_confirmation, :email, :address, :type, :town, :city_id, :region_id, :country_id, :description, :short_description, :website_url, :category_id, :picture, category_ids: []) 
        
     else 
       @type_of_user = "error"
       render text: "Incorrect type of user in params"
     end
   end
-
-
 
   private
 
@@ -124,8 +131,8 @@ class UsersController < ApplicationController
 
   def load_geo_data
     @countries = Country.all
-    @regions = Region.all
-    @cities = City.all
+    @regions = []
+    @cities = []
   end
 
 end

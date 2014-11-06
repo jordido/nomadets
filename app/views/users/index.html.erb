@@ -1,67 +1,68 @@
-
 <% @users.each do |u| %>
 	<% @user = u %>
-	<div class="row">
-		<div class="col-md-8">
-			<div class="row">
-				<div class="col-md-2">
-				<%= image_tag u.picture, :class => "userImage"%>
-				</div>
-		   	<div class="col-md-10">
-						<table class="table table_stripted">
-							<thead class = "panel-heading">
-								<tr>	
-								<th><%= u.name %></th>
-								<th><%= u.last_name %></th>
-									<th>Town</th>
-									<th>City</th>
-									<th>region</th>
-									<th>Country</th>	
-									<th>website</th>
-									<th>		
-										<%= link_to "Show", user_path(u) %>
-									</th>
-									<% if admin %>
-										<th>
-										<%= link_to "Edit", edit_user_path(u) %>
+	<div class="panel-group" id="accordion">
+   	<div class="panel-heading">
+      <div class="row">
+          <div class="col-md-1 ">
+						<%= image_tag u.picture, :class => "userImage"%>
+					</div>
+					<div class="col-md-11">
+						<div class="row">	
+        			<div class="col-md-8">												
+							<table class="table no-margin-bottom">
+								<tr>
+										<th class="col-md-3"><%= u.full_name %></th>
+										<th class="col-md-2"><%= u.country.name if u.country %></th>
+										<th class="col-md-2"><%= u.city.name if u.city %></th>					
+										<th class="col-md-1"><%= image_tag u.country, src: "assets/blank.gif", class: "flag "+u.country.flag, alt: u.country.name if u.country %></th>
+										<th class="col-md-2">
+											<% if admin %>												
+												<%= link_to "Edit", edit_user_path(u) %>										
+												<%= link_to "Delete", user_path(u), method: :delete, data: { confirm: 'Are you sure?' } %>											
+											<% end %>
 										</th>
-										<th>
-											<%= link_to "Delete", user_path(u), method: :delete, data: { confirm: 'Are you sure?' } %>
+										<th class="col-md-2 stars-right">
+											<%= @user.average_rating %>
 										</th>
-									<% end %>
 								</tr>
-							</thead>
-							<tbody>
-							<tr>
-								<td></td>
-								<td></td>
-								<td><%= u.town %></td>
-								<td><%= u.city.name if u.city %></td>
-								<td><%= u.region.name if u.region %></td>
-								<td><%= u.country.name if u.country %></td>		
-								<td><%= u.website_url %></td>	
-							</tr>
-							</tbody>
-						</table>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-2">
-					<%= render 'show_categories' %>
-				</div>
-				<div class="col-md-10">
-					<%=render 'show_description' %>
-				</div>
-			</div>
-		</div> 
-		<!-- end of col-8 -->
-    <div class="col-md-4">			
-   		<%= render 'show_reviews'%>
-   		<%= render 'show_reviews_boots' %>
-   	</div>
+								<!-- </thead> -->
+							</table>
+						</div>
+		   			       
+						<div class="col-md-2">
+						</div>
 
+						<div class="col-md-2">
+							<button type="button" class="btn btn-warning btn-toogle" data-toggle="collapse" data-target= <%= @user.haccordion %> >Click to Toogle
+							</button>
+						</div>
+					<div class = "col-md-12">
+						<p><%= @user.short_description%></p>
+					</div>
+				</div> <!-- end of col-11 -->
+					
+			</div>  <!-- end of row -->
+
+		</div>
 	</div>
+	</div>
+
+	<div id=<%= @user.accordion %> class="panel-collapse collapse">
+			<div class="row">
+				<div class="col-md-8 nopadding-right">
+						<div class="row">
+							<div class="col-md-2 nopadding-right">
+								<%= render '/users/show_categories' %>
+							</div>
+							<div class="col-md-10 nopadding-right">
+								<%=render '/users/show_description' %>
+							</div>
+						</div>
+				</div>
+				<!-- end of col-8 -->
+		    <div class="col-md-4 nopadding-right">			
+		   		<%= render '/users/show_reviews' %>
+		   	</div>
+			</div>
+	</div> <!-- End of accordion -->
 <% end %>
-
-
-

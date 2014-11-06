@@ -34,14 +34,6 @@ class SearchesController < ApplicationController
     end
     
     @users.keep_if { |u| u.type == @search.user_type }
-    # if (@search.user_type == "teachers") 
-    #   @users = Teacher.all
-    # elsif (@search.user_type == "venues")  
-    #   @users = Venue.all
-    # elsif (@search.user_type == "students") 
-    #   @users = Student.all
-    # else @users = User.all
-    # end
     
     city_search = (@search.city_id.nil?) ? 0 : @search.city_id
     region_search = (@search.region_id.nil?) ? 0 : @search.region_id
@@ -55,7 +47,6 @@ class SearchesController < ApplicationController
            @users.keep_if { |u| u.country_id == country_search }
     end
     render '/users/index'
-
   end
 
   def map
@@ -66,25 +57,18 @@ class SearchesController < ApplicationController
   def update_regions
     # updates regions and cities based on country selected
     country = Country.find(params[:country_id])
-
     # map to name and id for use in our options_for_select
     @regions = country.regions.map{|r| [r.name, r.id]}.insert(0, "Select a region")
-    p @regions
-    respond_to do |format|
-      format.html { redirect_to searches_url }
-      format.js
-    end
   end
 
   def update_cities
     # updates cities based on region selected
     region = Region.find(params[:region_id])
     @cities = region.cities.map{|c| [c.name, c.id]}.insert(0, "Select a city")
-    p @cities
-    respond_to do |format|
-      format.html { redirect_to searches_url }
-      format.js
-    end
+    # respond_to do |format|
+    #   format.html { redirect_to searches_url }
+    #   format.js
+    # end
   end
 
   private

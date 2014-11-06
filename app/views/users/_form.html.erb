@@ -33,6 +33,10 @@
 	    <%= u.label :city_id %>
 	    <%= u.collection_select :city_id, @cities, :id, :name, {:prompt  => "Select a City"},{:id => 'u_cities_select'} %>
 	  </div>
+	  <div class="form-group">
+			<%= u.label :short_description %>
+			<%= u.text_area :short_description, class: "form-control", placeholder: "description", size: "80" %>
+		</div>
 		<div class="form-group">
 			<%= u.label :description %>
 			<%= u.text_area :description, class: "form-control", placeholder: "description", size: "60x12" %>
@@ -73,28 +77,4 @@
 
 <%= link_to("Back", users_path) %>
 
- 
-<script>
-    $('#u_countries_select').change(function() {
-      $.ajax({
-        url: "<%= user_regions_path %>",
-        type: "GET",
-        data: {
-          country_id : $('#u_countries_select').val()
-        },
-        dataType: "script"
-      }).done(function (){ 
-            $('#u_regions_select').change(function() {
-              $.ajax({
-                url: "<%= user_cities_path %>",
-                type: "GET",
-                data: {
-                  region_id : $('#u_regions_select').val()
-                },
-                dataType: "script"
-              });
-            });
-          });
-    });   
-</script>
 
