@@ -1,0 +1,14 @@
+<% if current_user && ( current_user.id != @user.id) %>
+  <% @review = Review.new %>
+  <% @review.author_id = current_user.id %>
+  <% @review.reviewed_id = @user.id %>
+  <%= form_for @review, :html => {:class => "form-inline", :role => "form"} do |r| %>  
+    <div class="hidden">
+      <%= r.number_field :author_id %>
+      <%= r.number_field :reviewed_id %>
+    </div>
+    <%= r.text_area :comment, class: "form-control", placeholder: "your comment", size: "108x2" %>
+    <%= r.number_field :rating, in: 0..5, class: "form-control", placeholder: "rate it", size: "5x1" %>
+  <button class="btn btn-default">Add</button> 
+  <% end %>
+<% end %>

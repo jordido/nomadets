@@ -7,6 +7,10 @@
 	padding-bottom: 0px;
 }
 
+.panel-group {
+	margin-bottom: 0px;
+}
+
 .panel {
 	border: none;
 	padding-top: 0;
@@ -21,8 +25,8 @@
 }
 
 .table>tbody>tr>th {
-	padding-top : 22px;
-	border-top: none;
+	padding-top : 9px;
+	// border-top: none;
 }
 
 .stars-right {
@@ -33,6 +37,7 @@ line-height: 1;
 color: #000;
 text-shadow: 0 1px 0 #fff;
 opacity: .8;
+text-align: right;
 }
 
 .nopadding-left {
@@ -44,9 +49,13 @@ opacity: .8;
 }
 
 .btn-toogle {
-	margin-top: 15px;
+	// margin-top: 15px;
 }
 
 .no-margin-bottom {
 	margin-bottom: 0px;
+}
+
+.table>tbody>tr>th {
+	padding-bottom: 4px;
 }

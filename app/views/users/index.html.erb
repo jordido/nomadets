@@ -12,9 +12,10 @@
 							<table class="table no-margin-bottom">
 								<tr>
 										<th class="col-md-3"><%= u.full_name %></th>
-										<th class="col-md-2"><%= u.country.name if u.country %></th>
-										<th class="col-md-2"><%= u.city.name if u.city %></th>					
 										<th class="col-md-1"><%= image_tag u.country, src: "assets/blank.gif", class: "flag "+u.country.flag, alt: u.country.name if u.country %></th>
+										<td class="col-md-2"><%= u.country.name if u.country %></td>
+										<td class="col-md-2"><%= u.city.name if u.city %></td>					
+
 										<th class="col-md-2">
 											<% if admin %>												
 												<%= link_to "Edit", edit_user_path(u) %>										
@@ -55,7 +56,12 @@
 								<%= render '/users/show_categories' %>
 							</div>
 							<div class="col-md-10 nopadding-right">
-								<%=render '/users/show_description' %>
+								<div class="col-md-12 nopadding-right">
+									<%=render '/users/show_description' %>
+								</div>
+								<div class="col-md-12 nopadding-right">
+									<%=render '/users/input_review' %>
+								</div>
 							</div>
 						</div>
 				</div>
