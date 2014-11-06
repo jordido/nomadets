@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   put 'venues/:id' => 'users#update', as: :venue
   patch 'venues/:id' => 'users#update'
 
+  get 'show/:id' => 'users#show'
   get 'reviews_by/:id' =>'reviews#show_by', as: :reviews_by
   
   get 'searches' =>'searches#new'

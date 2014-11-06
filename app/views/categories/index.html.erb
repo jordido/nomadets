@@ -1,12 +1,20 @@
 <h4>Categories list</h4>
 <table class="table table_stripted">
-	<th>Parent Category</th>
 	<th>Category name</th>
+	<th>Parent Category</th>
+	<th>Parent Category</th>
 	<th>Icon</th>
 	<% @categories.each do |c| %> 
 		<tr>
-			<td><%= c.parent_name if c.parent_category %></td>
 			<td><%= c.name %></td>
+			<td><%= c.parent_name if c.parent_category %></td>
+			<td>
+			<%= if c.parent_category 
+				 if c.parent_category.parent_category 
+						 c.parent_category.parent_name
+						  end
+				 end %>	
+			</td>	
 			<td><%= c.icon %></td>
 			<td><%= link_to "Edit", edit_category_path(c), :class => "btn btn-success" %>
 			<%= link_to "Delete", category_path(c), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-success" %></td>	

@@ -64,7 +64,7 @@ function get_coords() {
         initialize(places);
 
     }).fail(function(jqXHR, textStatus, errorThrown) {
-        alert( textStatus );
+        // alert( textStatus );
       
     }).always(function() { 
         
