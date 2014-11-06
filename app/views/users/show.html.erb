@@ -35,13 +35,22 @@
 			</tr>
 		</tbody>
 	</table>
-	<br/>
-	<div>
+
+	<div class="panel-border-white">
 		<%= @user.short_description %>
 	</div>
-<%= render '/users/show_description' %>
-<%= render '/users/show_reviews' %>
-<%= link_to "Back", users_path %>
+	<div class="panel-border">
+		<%= render '/users/show_description' %>
+	</div>
+	<div class= "col-md-12 panel-border-white">
+		<div class= "col-md-6">
+			<%= render '/users/show_reviews' %>
+		</div>
+		<div class= "col-md-6">
+			<%= render '/users/show_reviews_by' %>
+		</div>
+	</div>
+	<%= link_to "Back", users_path %>
 </div>
 
 
