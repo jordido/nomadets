@@ -1,29 +1,26 @@
-<div class="reviewsBox">
-  <div class="col-md-12">
-    <table class ="table table_stripted">
-      <th>Recomendations from <%= @user.name %></th>
-    </table>
-    <div class="actionBox">
-      <ul class="commentList">
-        <% if @user.reviews_by.count > 0 %>
-          <%  @user.reviews_by.each do |r| %>
-            <li>
-                <div class="commenterImage">
-                  <%= image_tag r.reviewed.picture if r.reviewed %>
-                </div>
-                <div class="commentText">
-                    <p class=""><%= r.comment %></p> <span class="date sub-text">on <%=r.updated_at %> about <%= r.reviewed.name if r.reviewed %></span>
-                </div>
-            </li>
-          <% end %>
-          <% else %>
-            <li>
-              <div class="commentText">
-                <p class=""> This user has still not reviewed</p>
-              </div>
-            </li>
-          <% end %>
-      </ul>
-    </div>
-  </div>
+<div class="row">
+    <p class = "h-subBox">Recomendations from <%= @user.name %></p>
+</div>
+<div class="actionBox">
+  <ul class="commentList">
+    <% if @user.reviews_by.count > 0 %>
+      <%  @user.reviews_by.each do |r| %>
+        <li>
+          <div class="commenterImage">
+            <%= image_tag r.reviewed.picture if r.reviewed %>
+          </div>
+          <div class="commentText">
+            <p class=""><%= r.comment %></p> <span class="date sub-text">on <%=r.updated_at %> about <%= r.reviewed.name if r.reviewed %></span>
+             <span class="date sub-text">, rated with <%=r.rating %></span>
+          </div>
+        </li>
+      <% end %>
+      <% else %>
+        <li>
+          <div class="commentText">
+            <p class=""> This user has still not reviewed</p>
+          </div>
+        </li>
+      <% end %>
+  </ul>
 </div>

@@ -24,7 +24,11 @@
 											<% end %>
 										</th>
 										<th class="col-md-2 stars-right">
-											<%= @user.average_rating %>
+											<%= if @user.average_rating == 0 
+														"Not rated"
+													else 
+														@user.average_rating
+													end %>
 										</th>
 								</tr>
 								<!-- </thead> -->

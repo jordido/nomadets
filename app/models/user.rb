@@ -32,7 +32,11 @@ class User < ActiveRecord::Base
 	scope :located, -> { where.not(latitude: nil).where.not(longitude: nil) }
 	
 	def average_rating
+		if self.reviews_to.count > 0
   	(self.reviews_to.sum(:rating).to_f / self.reviews_to.size.to_f).round(2)
+	  else
+	  	0
+	  end
 	end
 
 	def url
