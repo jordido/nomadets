@@ -1,10 +1,11 @@
+
 <% @users.each do |u| %>
 	<% @user = u %>
 	<div class="panel-group" id="accordion">
    	<div class="panel-heading">
       <div class="row">
           <div class="col-md-1 ">
-						<%= image_tag u.picture, :class => "userImage"%>
+						<%= link_to (image_tag u.picture, :class => "userImage"), u.url %>
 					</div>
 					<div class="col-md-11">
 						<div class="row">	
@@ -18,10 +19,14 @@
 										<td class="col-md-2"><%= u.city.name if u.city %></td>					
 
 										<th class="col-md-2">
-											<% if admin %>												
-												<%= link_to "Edit", edit_user_path(u) %>										
-												<%= link_to "Delete", user_path(u), method: :delete, data: { confirm: 'Are you sure?' } %>											
-											<% end %>
+											<% if current_user %>
+											<%	if current_user.admin %>
+											<%=	link_to "Edit", edit_user_path(u) %>
+											<%= link_to "Delete", user_path(u), method: :delete, data: { confirm: 'Are you sure?' } %>
+											<%end %>											
+								
+											 
+											 <%end %>
 										</th>
 										<th class="col-md-2 stars-right">
 											<%= if @user.average_rating == 0 

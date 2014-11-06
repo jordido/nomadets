@@ -8,6 +8,11 @@ class UsersController < ApplicationController
   before_action :load_geo_data, only: [:edit, :update, :new]
 
   def index
+    # # variables for searching from users index
+    # @countries  = Country.all
+    # @regions = []
+    # @cities = []
+    # @search = Search.new
     @users = User.all
     #  @users = policy_scope(User)
   end

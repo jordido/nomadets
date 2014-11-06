@@ -9,15 +9,15 @@
   </div>
   <div class="form-group col-md-3">
     <%= s.label :country_id, class: "help-block" %>
-    <%= s.collection_select :country_id,  @countries,  :id, :name, {:prompt  => "Select a Country"}, {:id => 'countries_select'} if @countries %>
+    <%= s.collection_select :country_id,  @countries,  :id, :name, {:prompt => "Select a Country"}, {:id => 'countries_select'} if @countries %>
   </div>
   <div class="form-group col-md-1 form-vertical">
     <%= s.label :region_id, class: "help-block" %>
-    <%= s.collection_select :region_id, @regions, :id, :name, {:prompt   => "Select a Region"}, {:id => 'regions_select'} %>
+    <%= s.collection_select :region_id, @regions, :id, :name, {:prompt => "Select a Region"}, {:id => 'regions_select'} %>
   </div>
   <div class="form-group col-md-1" >
     <%= s.label :city_id, class: "help-block" %>
-    <%= s.collection_select :city_id, @cities, :id, :name, {:prompt   => "Select a City"}, {:id => 'cities_select'} %>
+    <%= s.collection_select :city_id, @cities, :id, :name, {:prompt => "Select a City"}, {:id => 'cities_select'} %>
   </div>
   <div class="form-group col-md-2">
       <%= s.label :categories, class: "help-block" %>

@@ -54,4 +54,8 @@ class User < ActiveRecord::Base
 	def haccordion
 		"#accordion" + self.id.to_s
 	end
+
+	def admin
+		self.email == "jordi@jordi.com"
+	end
 end
