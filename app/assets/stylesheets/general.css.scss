@@ -3,3 +3,21 @@ background-color: #EAEAEA;
 padding: 8px;
 border-radius: 5px;
 }
+
+.panel-border {
+	border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 0px solid #000000;
+	padding: 5px;
+	background-color: #F8F8F8
+}
+
+.panel-border-white {
+	border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 0px solid #000000;
+	padding: 5px;
+	background-color: #FFFFFF;
+}

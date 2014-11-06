@@ -1,8 +1,8 @@
-<div class="col-md-12">
-    <table class ="table table_stripted">
-        <th><%= @user.type %>'s Categories</th>
-    </table>
+
+<div class="row" >
+    <h5><%= @user.type %>'s Categories</h5>
 </div>
+<div class="actionBox">
 <ul class="commentList">
 <%if @user.categories.count > 0 %>
     <%  @user.categories.each do |c| %>
@@ -23,6 +23,8 @@
     </li>
 <% end %>
 </ul>
+</div>
+
 
 
 

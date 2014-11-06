@@ -48,20 +48,20 @@
 	</div>
 	</div>
 
-	<div id=<%= @user.accordion %> class="panel-collapse collapse">
-			<div class="row">
+	<div id=<%= @user.accordion %> class="panel-collapse collapse ">
+			<div class="col-md-12 panel-border">
 				<div class="col-md-8 nopadding-right">
 						<div class="row">
-							<div class="col-md-2 nopadding-right">
+							<div class="col-md-2 nopadding-right panel-border">
 								<%= render '/users/show_categories' %>
 							</div>
 							<div class="col-md-10 nopadding-right">
-								<div class="col-md-12 nopadding-right">
-									<%=render '/users/show_description' %>
-								</div>
-								<div class="col-md-12 nopadding-right">
-									<%=render '/users/input_review' %>
-								</div>
+							<div class="col-md-12 nopadding-right panel-border-white ">
+								<%=render '/users/show_description' %>
+							</div>
+							<div class="col-md-12 nopadding-right panel-border">
+								<%=render '/users/input_review' %>
+							</div>
 							</div>
 						</div>
 				</div>
