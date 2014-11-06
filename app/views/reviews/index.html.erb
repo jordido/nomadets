@@ -21,12 +21,13 @@
 				<td class="commentText"><%= r.comment %></td>
 				<td><%= r.rating %></td>
 				<td><%= r.course.name if r.course %></td>
-				<% if admin %>
+
 				<td>												
 					<%= link_to "Edit", edit_review_path(r) %>										
-					<%= link_to "Delete", review_path(r), method: :delete, data: { confirm: 'Are you sure?' } %>											
-				<% end %>
-				</td>			
+					<%= link_to "Delete", review_path(r), method: :delete, data: { confirm: 'Are you sure?' } %>		
+				</td>										
+
+					
 			</tr>
 		<% end %>
 	<% end %>

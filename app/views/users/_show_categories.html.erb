@@ -1,6 +1,6 @@
 
 <div class="row" >
-    <h5><%= @user.type %>'s Categories</h5>
+    <p class = "h-subBox"><%= @user.type %>'s Categories</p>
 </div>
 <div class="actionBox">
 <ul class="commentList">
@@ -10,7 +10,6 @@
             <div class="commentText">
                 <p class="">
                 <%= c.name %>
-                <%if c.parent_category %> from <% c.parent_name %><% end %>
                 </p> 
             </div>
         </li>

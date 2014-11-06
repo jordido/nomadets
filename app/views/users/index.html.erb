@@ -11,8 +11,9 @@
         			<div class="col-md-8">												
 							<table class="table no-margin-bottom">
 								<tr>
-										<th class="col-md-3"><%= u.full_name %></th>
 										<th class="col-md-1"><%= image_tag u.country, src: "assets/blank.gif", class: "flag "+u.country.flag, alt: u.country.name if u.country %></th>
+										<th class="col-md-3"><%= u.full_name %></th>
+										
 										<td class="col-md-2"><%= u.country.name if u.country %></td>
 										<td class="col-md-2"><%= u.city.name if u.city %></td>					
 
@@ -50,9 +51,9 @@
 
 	<div id=<%= @user.accordion %> class="panel-collapse collapse ">
 			<div class="col-md-12 panel-border">
-				<div class="col-md-8 nopadding-right">
+				<div class="col-md-8">
 						<div class="row">
-							<div class="col-md-2 nopadding-right panel-border">
+							<div class="col-md-2 nopadding-right nopadding-left panel-border">
 								<%= render '/users/show_categories' %>
 							</div>
 							<div class="col-md-10 nopadding-right">
@@ -66,7 +67,7 @@
 						</div>
 				</div>
 				<!-- end of col-8 -->
-		    <div class="col-md-4 nopadding-right">			
+		    <div class="col-md-4 nopadding-right panel-border">			
 		   		<%= render '/users/show_reviews' %>
 		   	</div>
 			</div>
