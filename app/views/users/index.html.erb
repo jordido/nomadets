@@ -1,4 +1,6 @@
-
+<%if @users.length == 0 %>
+	<h4> Nothing to show. No results </h4>
+<%end%>
 <% @users.each do |u| %>
 	<% @user = u %>
 	<div class="panel-group" id="accordion">
@@ -17,32 +19,28 @@
 										
 										<td class="col-md-2"><%= u.country.name if u.country %></td>
 										<td class="col-md-2"><%= u.city.name if u.city %></td>					
-
+										<td class="col-md-2"><%= u.categories.first.name if u.city %></td> 
 										<th class="col-md-2">
 											<% if current_user %>
-											<%	if current_user.admin %>
-											<%=	link_to "Edit", edit_user_path(u) %>
-											<%= link_to "Delete", user_path(u), method: :delete, data: { confirm: 'Are you sure?' } %>
-											<%end %>											
-								
-											 
-											 <%end %>
+												<%	if current_user.admin %>
+												<%=	link_to "Edit", edit_user_path(u) %>
+												<%= link_to "Delete", user_path(u), method: :delete, data: { confirm: 'Are you sure?' } %>
+												<%end %>						
+											<%end %>
 										</th>
-										<th class="col-md-2 stars-right">
-											<%= if @user.average_rating == 0 
-														"Not rated"
-													else 
-														@user.average_rating
-													end %>
-										</th>
+
 								</tr>
 								<!-- </thead> -->
 							</table>
 						</div>
-		   			       
+					
 						<div class="col-md-2">
+							<%= if @user.average_rating == 0 
+										"Not rated"
+									else 
+										@user.average_rating
+									end %>
 						</div>
-
 						<div class="col-md-2">
 							<button type="button" class="btn btn-warning btn-toogle" data-toggle="collapse" data-target= <%= @user.haccordion %> >Click to Toogle
 							</button>
