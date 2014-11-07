@@ -18,15 +18,9 @@ Rails.application.routes.draw do
   put 'venues/:id' => 'users#update', as: :venue
   patch 'venues/:id' => 'users#update'
 
+  get 'show/:id' => 'users#show'
   get 'reviews_by/:id' =>'reviews#show_by', as: :reviews_by
   
-  resources :reviews
-  resources :users, only: [:create, :index, :show, :edit, :update, :new, :destroy]
-  resources :categories, only: [:create, :index, :show, :edit, :update, :new, :destroy]
-  resources :searches, only: [:create, :new, :update]
-
-  get 'reviews_by/:id' =>'reviews#show_by'
-
   get 'searches' =>'searches#new'
   get 'searches/update_regions', to: 'searches#update_regions', :as => 'search_regions'
   get 'searches/update_cities', to: 'searches#update_cities', :as => 'search_cities'
@@ -35,6 +29,14 @@ Rails.application.routes.draw do
   
   post 'search' => 'searches#create', as: :search_users
 
+  resources :reviews
+  resources :users, only: [:create, :index, :show, :edit, :update, :new, :destroy]
+  resources :categories, only: [:create, :index, :show, :edit, :update, :new, :destroy]
+  resources :searches, only: [:create, :new, :update]
+
+  post 'reviews' => 'reviews#create'
+
+ 
   patch "/users", to: "users#update"
 
   post   "/login",  to: "login#create"

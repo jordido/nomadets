@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 	belongs_to :country
 
 	validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i } 
-
+	validates_length_of :short_description, :maximum => 80
 	has_and_belongs_to_many :categories
 
 	geocoded_by :full_street_address   # can also be an IP address
@@ -30,5 +30,32 @@ class User < ActiveRecord::Base
 	end
 
 	scope :located, -> { where.not(latitude: nil).where.not(longitude: nil) }
+	
+	def average_rating
+		if self.reviews_to.count > 0
+  	(self.reviews_to.sum(:rating).to_f / self.reviews_to.size.to_f).round(2)
+	  else
+	  	0
+	  end
+	end
 
+	def url
+		("users/"+ self.id.to_s)
+	end
+
+	def full_name
+		self.name + " " + self.last_name
+	end
+
+	def accordion
+		"accordion" + self.id.to_s
+	end
+
+	def haccordion
+		"#accordion" + self.id.to_s
+	end
+
+	def admin
+		self.email == "jordi@jordi.com"
+	end
 end

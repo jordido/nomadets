@@ -1,0 +1,82 @@
+body{padding: 24px;}
+a{color:#c000;text-decoration:none}
+/*reset*/
+.rating {
+position: relative;
+margin: 0 50%;
+left: -65px;
+font-size: 3em;
+}
+.star-holder {
+min-width: 3em;
+width:auto;
+height: 21px;
+top: -2ex;
+left: 7ex;
+position: relative;
+float: left;
+}
+.rating .stars-g, .rating .stars-r
+{
+width: 100%;
+position: relative;/*gray stars have to be relative so parent has width*/
+/*Parent width is necessary for clipping percentages to work*/
+color: #999;
+display: block;
+font-family:monospace;
+letter-spacing: 0;
+white-space:pre
+}
+.rating .stars-r
+{
+    color:#c00;
+    overflow:hidden;
+    position:absolute;
+    top: 0;
+}
+/*Percentages are necessary for clipping as IE draws the stars bigger than Chrome and FF*/
+.r49 .stars-r{width:97.777%}
+.r48 .stars-r{width:96.666%}
+.r47 .stars-r{width:94.444%}
+.r46 .stars-r{width:92.222%}
+.r45 .stars-r{width:90%}
+.r44 .stars-r{width:88.888%}
+.r43 .stars-r{width:86.666%}
+.r42 .stars-r{width:85%}
+.r41 .stars-r{width:83.333%}
+.r40 .stars-r{width:80%}
+
+.r39 .stars-r{width:76.666%}
+.r38 .stars-r{width:75.555%}
+.r37 .stars-r{width:73.333%}
+.r36 .stars-r{width:71.111%}
+.r35 .stars-r{width:70%}
+.r34 .stars-r{width:68.888%}
+.r33 .stars-r{width:66.666%}
+.r32 .stars-r{width:65%}
+.r31 .stars-r{width:63.333%}
+.r30 .stars-r{width:60%}
+
+.r29 .stars-r{width:56.666%}
+.r28 .stars-r{width:55.555%}
+.r27 .stars-r{width:53.333%}
+.r26 .stars-r{width:51.111%}
+.r25 .stars-r{width:50%}
+.r24 .stars-r{width:48.888%}
+.r23 .stars-r{width:46.666%}
+.r22 .stars-r{width:45%}
+.r21 .stars-r{width:43%}
+.r20 .stars-r{width:40%}
+
+.r19 .stars-r{width:36.666%}
+.r18 .stars-r{width:35.555%}
+.r17 .stars-r{width:33.333%}
+.r16 .stars-r{width:31.111%}
+.r15 .stars-r{width:30%}
+.r14 .stars-r{width:28.888%}
+.r13 .stars-r{width:26.666%}
+.r12 .stars-r{width:25%}
+.r11 .stars-r{width:23.333%}
+.r10 .stars-r{width:20%}
+/*1 star is the lowest rating, so no fractions below this*/
+.r00 .stars-r{width:0px}

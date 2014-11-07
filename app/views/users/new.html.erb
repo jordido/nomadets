@@ -1,4 +1,25 @@
-<h4>New User</h4>
-
 <%= render 'form' %>
-
+ 
+<script>
+  $('#u_countries_select').change(function() {
+    $.ajax({
+      url: "<%= user_regions_path %>",
+      type: "GET",
+      data: {
+        country_id : $('#u_countries_select').val()
+      },
+      dataType: "script"
+    }).done(function (){ 
+          $('#u_regions_select').change(function() {
+            $.ajax({
+              url: "<%= user_cities_path %>",
+              type: "GET",
+              data: {
+                region_id : $('#u_regions_select').val()
+              },
+              dataType: "script"
+            });
+          });
+        });
+  });   
+</script>

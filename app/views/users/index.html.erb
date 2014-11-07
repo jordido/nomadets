@@ -1,55 +1,82 @@
-<h4>Users list</h4>
+<%if @users.length == 0 %>
+	<h4> Nothing to show. No results </h4>
+<%end%>
+<% @users.each do |u| %>
+	<% @user = u %>
+	<div class="panel-group" id="accordion">
+   	<div class="panel-heading">
+      <div class="row">
+          <div class="col-md-1 ">
+						<%= link_to (image_tag u.picture, :class => "userImage"), u.url %>
+					</div>
+					<div class="col-md-11">
+						<div class="row">	
+        			<div class="col-md-8">												
+							<table class="table no-margin-bottom">
+								<tr>
+										<th class="col-md-1"><%= image_tag u.country, src: "assets/blank.gif", class: "flag "+u.country.flag, alt: u.country.name if u.country %></th>
+										<th class="col-md-3"><%= u.full_name %></th>
+										
+										<td class="col-md-2"><%= u.country.name if u.country %></td>
+										<td class="col-md-2"><%= u.city.name if u.city %></td>					
+										<td class="col-md-2"><%= u.categories.first.name if u.city %></td> 
+										<th class="col-md-2">
+											<% if current_user %>
+												<%	if current_user.admin %>
+												<%=	link_to "Edit", edit_user_path(u) %>
+												<%= link_to "Delete", user_path(u), method: :delete, data: { confirm: 'Are you sure?' } %>
+												<%end %>						
+											<%end %>
+										</th>
 
-<div>
-	<%= link_to "New User", new_user_path %>
-</div>
+								</tr>
+								<!-- </thead> -->
+							</table>
+						</div>
+					
+						<div class="col-md-2">
+							<%= if @user.average_rating == 0 
+										"Not rated"
+									else 
+										@user.average_rating
+									end %>
+						</div>
+						<div class="col-md-2">
+							<button type="button" class="btn btn-warning btn-toogle" data-toggle="collapse" data-target= <%= @user.haccordion %> >Click to Toogle
+							</button>
+						</div>
+					<div class = "col-md-12">
+						<p><%= @user.short_description%></p>
+					</div>
+				</div> <!-- end of col-11 -->
+					
+			</div>  <!-- end of row -->
 
-	<% @users.each do |u| %>
-	<table class="table table_stripted">
-			<th><%= u.type %></th>
-			<th>Id</th>
-			<th>First name</th>
-			<th>Last name</th>
-			<th>Email</th>
-			<th>Address</th>
-			<th>Town</th>
-			<th>City</th>
-			<th>region</th>
-			<th>Country</th>
-			<td>Lattitude</td>
-			<td>Longitude</td>	
-			<th>website</th>
-		<tr>
-			<td><%= image_tag u.picture, :class => "userImage"%></td>
-			<td><%= u.id %></td>
-			<td><%= u.name %></td>
-			<td><%= u.last_name %></td>
-			<td><%= u.email %></td>
-			<td><%= u.address %></td>
-			<td><%= u.town %></td>
-			<td><%= u.city.name if u.city %></td>
-			<td><%= u.region.name if u.region %></td>
-			<td><%= u.country.name if u.country %></td>
-			<td><%= u.latitude %></td>
-			<td><%= u.longitude %></td>			
-			<td><%= u.website_url %></td>
-			<td>
-				<%= link_to "Show", user_path(u) %>
+		</div>
+	</div>
+	</div>
 
-					<%= link_to "Edit", edit_user_path(u) %>
-					<%= link_to "Delete", user_path(u), method: :delete, data: { confirm: 'Are you sure?' } %>
-
-			</td>				
-		</tr>
-		</table>
-			<% @user = u %>
-			<%= render '/users/show_reviews'%>
-
-
-	<% end %>
-
-	<%= render '/users/load_map'%>
-
-</div>
-
-
+	<div id=<%= @user.accordion %> class="panel-collapse collapse ">
+			<div class="col-md-12 panel-border">
+				<div class="col-md-8">
+						<div class="row">
+							<div class="col-md-2 nopadding-right nopadding-left panel-border">
+								<%= render '/users/show_categories' %>
+							</div>
+							<div class="col-md-10 nopadding-right">
+							<div class="col-md-12 nopadding-right panel-border-white ">
+								<%=render '/users/show_description' %>
+							</div>
+							<div class="col-md-12 nopadding-right panel-border">
+								<%=render '/users/input_review' %>
+							</div>
+							</div>
+						</div>
+				</div>
+				<!-- end of col-8 -->
+		    <div class="col-md-4 nopadding-right panel-border">			
+		   		<%= render '/users/show_reviews' %>
+		   	</div>
+			</div>
+	</div> <!-- End of accordion -->
+<% end %>

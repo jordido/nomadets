@@ -61,11 +61,10 @@ function get_coords() {
           place["coords"] = new google.maps.LatLng(data[i].latitude, data[i].longitude);
           places.push(place);
         }
-        console.log(places);
         initialize(places);
 
     }).fail(function(jqXHR, textStatus, errorThrown) {
-        alert( textStatus );
+        // alert( textStatus );
       
     }).always(function() { 
         

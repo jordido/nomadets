@@ -1,6 +1,6 @@
-<h4>User</h4>
-
-<table class="table table_stripted">
+<div class="panel-body">
+	<table class="table table_stripted">
+		<thead class = "panel-heading">
 			<th><%= @user.type %></th>
 			<th>First name</th>
 			<th>Last name</th>
@@ -9,30 +9,48 @@
 			<th>City</th>
 			<th>Region</th>
 			<th>Country</th>
-			<td>Latitude</td>
-			<td>Longitude</td>
-			<td>Website</td>
-		<tr>
-			<td><%= image_tag @user.picture, :class => "userImage"%></td>
-			<td><%= @user.name %></td>
-			<td><%= @user.last_name %></td>
-			<td><%= @user.email %></td>
-			<td><%= @user.address %></td>
-			<td><%= @user.city.name if @user.city %></td>
-			<td><%= @user.region.name if @user.region %></td>
-			<td><%= @user.country.name if @user.country %></td>
-			<td><%= @user.latitude %></td>
-			<td><%= @user.longitude %></td>
-			<td><%= @user.website_url %></td>
-			<% if admin %>
-			<td>
-				<%= link_to "Edit", edit_user_path(u) %>
-				<%= link_to "Delete", user_path(u), method: :delete, data: { confirm: 'Are you sure?' } %>
-				</td>	
-			<% end %>		
-		</tr>
-</table>
-<br/>
+			<th>Latitude</th>
+			<th>Longitude</th>
+			<th>Website</th>
+		</thead>
+		<tbody>
+			<tr>
+				<td><%= image_tag @user.picture, :class => "userImage"%></td>
+				<td><%= @user.name %></td>
+				<td><%= @user.last_name %></td>
+				<td><%= @user.email %></td>
+				<td><%= @user.address %></td>
+				<td><%= @user.city.name if @user.city %></td>
+				<td><%= @user.region.name if @user.region %></td>
+				<td><%= @user.country.name if @user.country %></td>
+				<td><%= @user.latitude %></td>
+				<td><%= @user.longitude %></td>
+				<td><%= @user.website_url %></td>
+				<% if admin %>
+				<td>
+					<%= link_to "Edit", edit_user_path(u) %>
+					<%= link_to "Delete", user_path(u), method: :delete, data: { confirm: 'Are you sure?' } %>
+					</td>	
+				<% end %>		
+			</tr>
+		</tbody>
+	</table>
 
-<%= link_to "Back", users_path %>
-<%= render 'show_reviews' %>
+	<div class="panel-border-white">
+		<%= @user.short_description %>
+	</div>
+	<div class="panel-border">
+		<%= render '/users/show_description' %>
+	</div>
+	<div class= "col-md-12 panel-border-white">
+		<div class= "col-md-6">
+			<%= render '/users/show_reviews' %>
+		</div>
+		<div class= "col-md-6">
+			<%= render '/users/show_reviews_by' %>
+		</div>
+	</div>
+	<%= link_to "Back", users_path %>
+</div>
+
+

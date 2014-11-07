@@ -1,10 +1,61 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.userImage {
-    width:80px;
-    margin-right:5px;
-    height:80px;
-    border-radius:30%;
-    float:left;
+
+.panel-heading {
+	background-color: none;
+	padding-bottom: 0px;
+}
+
+.panel-group {
+	margin-bottom: 0px;
+}
+
+.panel {
+	border: none;
+	padding-top: 0;
+}
+
+.panel-body {
+	padding: 0px 15px 0px 15px;
+}
+
+.table>thead>tr>th {
+	border-bottom: 0px;
+}
+
+.table>tbody>tr>th {
+	padding-top : 9px;
+	// border-top: none;
+}
+
+.stars-right {
+float: right;
+font-size: 18px;
+font-weight: 700;
+line-height: 1;
+color: #000;
+text-shadow: 0 1px 0 #fff;
+opacity: .8;
+text-align: right;
+}
+
+.nopadding-left {
+	padding-left: 0px;
+}
+
+.nopadding-right {
+	padding-right: 0px;
+}
+
+.btn-toogle {
+	// margin-top: 15px;
+}
+
+.no-margin-bottom {
+	margin-bottom: 0px;
+}
+
+.table>tbody>tr>th {
+	padding-bottom: 4px;
 }

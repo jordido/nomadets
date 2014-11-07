@@ -1,0 +1,29 @@
+<div class="reviewsBox">
+  <div class="col-md-12">
+    <table class ="table table_stripted">
+      <th>Reviews about <%= @user.name %></th>
+    </table>
+    <div class="actionBox">
+      <ul class="commentList">
+        <% if @user.reviews_to.count > 0 %>
+          <%  @user.reviews_to.each do |r| %>
+            <li>
+                <div class="commenterImage">
+                  <%= image_tag r.author.picture if r.author %>
+                </div>
+                <div class="commentText">
+                    <p class=""><%= r.comment %></p> <span class="date sub-text">on <%=r.updated_at %> by <%= r.author.name if r.author %></span>
+                </div>
+            </li>
+          <% end %>
+          <% else %>
+            <li>
+              <div class="commentText">
+                <p class=""> This user has still no reviews</p>
+              </div>
+            </li>
+          <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
