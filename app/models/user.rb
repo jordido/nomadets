@@ -58,4 +58,6 @@ class User < ActiveRecord::Base
 	def admin
 		self.email == "jordi@jordi.com"
 	end
+
+
 end

@@ -1,0 +1,17 @@
+= form_for @category do |c|
+  - if @category.errors.any?
+    - @category.errors.full_messages.each do |message|
+      = message
+  .container-fluid
+    .form-group
+      = c.label :name
+      = c.text_field :name, class: "form-control", placeholder: "Name of category "
+    .form-group
+      = c.label :icon
+      = c.text_field :icon, class: "form-control", placeholder: "icon url"
+    .form-group
+      = c.label :parent_category
+      = c.select :parent_id, options_for_select(Category.all.collect{ |c| [c.name, c.id]}), :include_blank => true
+    %div
+      = c.submit class: "btn btn-success"
+    = link_to("Back", categories_path)

@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   post 'reviews' => 'reviews#create'
 
  
-  patch "/users", to: "users#update"
+ # patch "/users", to: "users#update"
 
   post   "/login",  to: "login#create"
   delete "/logout", to: "login#destroy"

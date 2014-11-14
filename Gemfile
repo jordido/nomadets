@@ -47,6 +47,7 @@ gem 'underscore-rails'
 # Geocoder for geographical information
 gem 'geocoder'
 
+gem 'haml-rails', '>= 0.3.4', :group => :development
 
 # Use unicorn as the app server
 # gem 'unicorn'
