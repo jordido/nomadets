@@ -37,6 +37,8 @@ function initialize(places) {
 		makeInfoWindowEvent(map, infowindow, places[i].name, places[i].url, marker);
 	}
 	setBounds(places);
+
+  setMarkers(map,places);
 }
 
 function loadScript() {
@@ -82,6 +84,36 @@ function setBounds(markersArray) {
         bounds.extend(markersArray[i].coords);
     }
     map.fitBounds(bounds);
+}
+
+function setMarkers(map, locations) {
+
+  var image = {
+    url: "/app/assets/images/house.png",
+    // This marker is 20 pixels wide by 32 pixels tall.
+    size: new google.maps.Size(20, 32),
+    // The origin for this image is 0,0.
+    origin: new google.maps.Point(0,0),
+    // The anchor for this image is the base of the flagpole at 0,32.
+    anchor: new google.maps.Point(0, 32)
+  };
+
+  var shape = {
+      coords: [1, 1, 1, 20, 18, 20, 18 , 1],
+      type: 'poly'
+  };
+  for (var i = 0; i < locations.length; i++) {
+    var beach = locations[i];
+    var myLatLng = new google.maps.LatLng(beach[1], beach[2]);
+    var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        icon: image,
+        shape: shape,
+        title: beach[0],
+        zIndex: beach[3]
+    });
+  }
 }
 
 function makeInfoWindowEvent(map, infowindow, contentString, url, marker) {
