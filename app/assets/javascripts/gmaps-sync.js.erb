@@ -42,7 +42,7 @@ function initialize(places) {
 	    draggable: true,
 	    map: map,
 	    title: places[i].name,
-      icon: "<%= asset_path('house.png') %>"
+      icon: "<%= asset_path('house.png') %>",
 		});
 
 		makeInfoWindowEvent(map, infowindow, places[i].name, places[i].url, marker);

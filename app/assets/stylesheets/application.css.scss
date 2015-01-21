@@ -17,4 +17,10 @@
  *= @import "bootstrap";
 
 */
-body { padding-top: 65px; }
+
+@font-family-serif;
+
+body { padding-top: 65px;
+			 background-image: url("debut_light.png");
+			 // font-family: @font-family-sans-serif;
+			  }
