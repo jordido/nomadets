@@ -1,4 +1,4 @@
-<div><%= link_to("Back", users_path) %></div>
+<div><%= link_to image_tag("backarrow.png"), users_path, class: "backbutton" %></div>
 <%= form_for @user do |u| %>
 	<% if @user.errors.any? %>
 		<% @user.errors.full_messages.each do |message| %>
@@ -6,75 +6,83 @@
 		<% end %>
 	<% end %>
 	<div class="container-fluid">
-		<div class="form-group">
-			<%= u.label :name %>
-			<%= u.text_field :name, class: "form-control", placeholder: "First name" %>
-		</div>
-		<div class="form-group">
-			<%= u.label :last_name %>
-			<%= u.text_field :last_name, class: "form-control", placeholder: "Last name" %>
-		</div>
+
+		<div id="register-form">
+			<div class="row-fluid">
+				<div class="form-group">
+					<%= u.label :name %>
+					<%= u.text_field :name, class: "form-control register-input", placeholder: "First name" %>
+				</div>
+				<div class="form-group">
+					<%= u.label :last_name %>
+					<%= u.text_field :last_name, class: "form-control register-input", placeholder: "Last name" %>
+				</div>
+			</div>
+
+	
 		<div class="form-group">
 			<%= u.label :address %>
-			<%= u.text_field :address, class: "form-control", placeholder: "Address" %>
+			<%= u.text_field :address, class: "form-control register-input", placeholder: "Address" %>
 		</div>
 		<div class="form-group">
 			<%= u.label :town %>
-			<%= u.text_field :town, class: "form-control", placeholder: "town" %>
+			<%= u.text_field :town, class: "form-control register-input", placeholder: "town" %>
 		</div>
 		<div class="form-group">
-	    <%= u.label :country_id %>
-	    <%= u.collection_select :country_id,  @countries,  :id, :name, {:prompt  => "Select a Country"},{:id => 'u_countries_select'}  %>
-  	</div>
-  	<div class="form-group">
-	    <%= u.label :region_id %>
-	    <%= u.collection_select :region_id, @regions, :id, :name, {:prompt  => "Select a region"},{:id => 'u_regions_select'} %>
-	  <div class="form-group">
-	    <%= u.label :city_id %>
-	    <%= u.collection_select :city_id, @cities, :id, :name, {:prompt  => "Select a City"},{:id => 'u_cities_select'} %>
-	  </div>
-	  <div class="form-group">
-			<%= u.label :short_description %>
-			<%= u.text_area :short_description, class: "form-control", placeholder: "description", size: "80" %>
+		    <%= u.label :country_id %>
+		    <%= u.collection_select :country_id,  @countries,  :id, :name, {:prompt  => "Select a Country"},{:id => 'u_countries_select'}  %>
+	  	</div>
+	  	<div class="form-group">
+		    <%= u.label :region_id %>
+		    <%= u.collection_select :region_id, @regions, :id, :name, {:prompt  => "Select a region"},{:id => 'u_regions_select'} %>
+		  <div class="form-group">
+		    <%= u.label :city_id %>
+		    <%= u.collection_select :city_id, @cities, :id, :name, {:prompt  => "Select a City"},{:id => 'u_cities_select'} %>
+		  </div>
+		  <div class="form-group">
+				<%= u.label :short_description %>
+				<%= u.text_area :short_description, class: "form-control register-input", placeholder: "description", size: "80" %>
+			</div>
+			<div class="form-group">
+				<%= u.label :description %>
+				<%= u.text_area :description, class: "form-control register-input", placeholder: "description", size: "60x12" %>
+			</div>
+			<div class="form-group">
+				<%= u.label :website_url %>
+				<%= u.text_field :website_url, class: "form-control register-input", placeholder: "URL" %>
+			</div>
+			<div class="form-group">
+				<%= u.label :email %>
+				<%= u.text_field :email, class: "form-control register-input", placeholder: "Email" %>
+			</div>
+			<div class="form-group">
+				<%= u.label :password %>
+				<%= u.password_field :password, class: "form-control register-input", placeholder: "Password" %>
+			</div>
+			<div class="form-group">
+				<%= u.label :repeat_password %>
+				<%= u.password_field :password_confirmation, class: "form-control register-input", placeholder: "Password" %>
+			</div>
+			<div class="field">
+	    	<%= u.label :picture %><br>
+	    	<%= u.file_field :picture, class: "form-control register-input", placeholder: "Image url" %>
+			</div>
+			<div class="form-group">
+				<%= u.label :type %>
+				<%= u.select :type, User::TYPES.collect{ |t| [t]}%>
+			</div>
+			<div class="form-group">
+				<%= u.label :category_ids %>
+				<%= u.collection_select :category_ids, Category.all, :id, :name, {}, { :multiple => true} %>
+			</div>
+			<div class="form-group">
+				<%= u.submit "Submit", class: "btn btn-success"%>
+			</div>
+
 		</div>
-		<div class="form-group">
-			<%= u.label :description %>
-			<%= u.text_area :description, class: "form-control", placeholder: "description", size: "60x12" %>
-		</div>
-		<div class="form-group">
-			<%= u.label :website_url %>
-			<%= u.text_field :website_url, class: "form-control", placeholder: "URL" %>
-		</div>
-		<div class="form-group">
-			<%= u.label :email %>
-			<%= u.text_field :email, class: "form-control", placeholder: "Email" %>
-		</div>
-		<div class="form-group">
-			<%= u.label :password %>
-			<%= u.password_field :password, class: "form-control", placeholder: "Password" %>
-		</div>
-		<div class="form-group">
-			<%= u.label :repeat_password %>
-			<%= u.password_field :password_confirmation, class: "form-control", placeholder: "Password" %>
-		</div>
-		<div class="field">
-    	<%= u.label :picture %><br>
-    	<%= u.file_field :picture, class: "form-control", placeholder: "Image url" %>
-		</div>
-		<div class="form-group">
-			<%= u.label :type %>
-			<%= u.select :type, User::TYPES.collect{ |t| [t]}%>
-		</div>
-		<div class="form-group">
-			<%= u.label :category_ids %>
-			<%= u.collection_select :category_ids, Category.all, :id, :name, {}, { :multiple => true} %>
-		</div>
-		<div class="form-group">
-			<%= u.submit "Submit", class: "btn btn-success"%>
-		</div>
+
 	</div>
 <% end %>
 
-<%= link_to("Back", users_path) %>
 
 
