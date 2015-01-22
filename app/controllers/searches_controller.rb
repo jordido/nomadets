@@ -49,10 +49,10 @@ class SearchesController < ApplicationController
     render '/users/index'
   end
 
-  def map
-    @users = @users.located
-    @users.to_json
-  end
+  #def map
+  #  @users = @users.located.first
+  #  @users.to_json
+  #end
 
   def update_regions
     # updates regions and cities based on country selected

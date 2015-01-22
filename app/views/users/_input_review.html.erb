@@ -12,4 +12,15 @@
     <%= r.number_field :rating, in: 0..5, class: "form-control", placeholder: "rate it", size: "5x1" %>
   <button class="btn btn-default btn-success">Add</button> 
   <% end %>
+
+<% form_id = "user_#{@user.id}_rating" %>       
+    <%= form_for @review, :html => {:id => form_id, :class => "star_rating_form"} do |f| %>
+        <%= f.hidden_field :user_id, :value => @user.id %>      
+        <%= f.hidden_field :rating, :id => form_id + "_stars" %>
+    <% end %>
+<% (1..5).each do |i| %>
+    <li class="rating_star" id="<%= form_id %>_<%= i %>" data-stars="<%= i %>" data-form-id="<%= form_id %>"></li>
+<% end %>
+
+
 <% end %>

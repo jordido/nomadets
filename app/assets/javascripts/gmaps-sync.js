@@ -43,8 +43,9 @@ function loadScript() {
   document.body.appendChild(script);
 }
 
-//$(document).ready(loadScript);
+
 $(window).load(loadScript);
+
 
 function get_coords() {
   $.ajax({

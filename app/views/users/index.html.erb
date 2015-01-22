@@ -28,12 +28,22 @@
 											 
 											 <%end %>
 										</th>
-										<th class="col-md-2 stars-right">
+										<th id=<%= @user.av_stars %>, class="col-md-2 stars-right">
+											<% form_id = "user_#{@user.id}_rating" %>       
+											<% if @user.average_rating > 0 %>
+												<% (1..@user.average_rating.to_i).each do |i| %>
+												    <li class="rating_star" id="<%= form_id %>_<%= i %>" data-stars="<%= i %>" data-form-id="<%= form_id %>"></li>
+												<% end %>
+												<% ((@user.average_rating+1).to_i..5).each do |i| %>
+												    <li class="rating_star_off" id="<%= form_id %>_<%= i %>" data-stars="<%= i %>" data-form-id="<%= form_id %>"></li>
+												<% end %>
+											<% end %>
 											<%= if @user.average_rating == 0 
 														"Not rated"
-													else 
+											else 													
 														@user.average_rating
-													end %>
+											end %>
+											
 										</th>
 								</tr>
 								<!-- </thead> -->
@@ -44,7 +54,7 @@
 						</div>
 
 						<div class="col-md-2">
-							<button type="button" class="btn btn-warning btn-toogle" data-toggle="collapse" data-target= <%= @user.haccordion %> >Click to Toogle
+							<button type="button" class="btn btn-warning btn-toogle" data-toggle="collapse" data-target= <%= @user.haccordion %> >Click to Toggle
 							</button>
 						</div>
 					<div class = "col-md-12">

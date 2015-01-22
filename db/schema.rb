@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141105232431) do
+ActiveRecord::Schema.define(version: 20141118154537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,6 +107,10 @@ ActiveRecord::Schema.define(version: 20141105232431) do
     t.integer  "author_id"
     t.integer  "reviewed_id"
     t.integer  "course_id"
+    t.integer  "rating_1",    default: 0
+    t.integer  "rating_2",    default: 0
+    t.integer  "rating_3",    default: 0
+    t.integer  "rating_4",    default: 0
   end
 
   add_index "reviews", ["author_id"], name: "index_reviews_on_author_id", using: :btree
