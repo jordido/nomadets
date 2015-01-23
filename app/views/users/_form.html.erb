@@ -29,14 +29,11 @@
 			<%= u.text_field :town, class: "form-control register-input", placeholder: "town" %>
 		</div>
 		<div class="form-group">
-		    <%= u.label :country_id %>
 		    <%= u.collection_select :country_id,  @countries,  :id, :name, {:prompt  => "Select a Country"},{:id => 'u_countries_select'}  %>
 	  	</div>
 	  	<div class="form-group">
-		    <%= u.label :region_id %>
 		    <%= u.collection_select :region_id, @regions, :id, :name, {:prompt  => "Select a region"},{:id => 'u_regions_select'} %>
 		  <div class="form-group">
-		    <%= u.label :city_id %>
 		    <%= u.collection_select :city_id, @cities, :id, :name, {:prompt  => "Select a City"},{:id => 'u_cities_select'} %>
 		  </div>
 		  <div class="form-group">
@@ -63,8 +60,9 @@
 				<%= u.label :repeat_password %>
 				<%= u.password_field :password_confirmation, class: "form-control register-input", placeholder: "Password" %>
 			</div>
+			<label> Upload your Picture</label>
 			<div class="field">
-	    	<%= u.label :picture %><br>
+	    	<%= u.label :picture, id: "pictureLabel" %><br>
 	    	<%= u.file_field :picture, class: "form-control register-input", placeholder: "Image url" %>
 			</div>
 			<div class="form-group">
@@ -72,11 +70,11 @@
 				<%= u.select :type, User::TYPES.collect{ |t| [t]}%>
 			</div>
 			<div class="form-group">
-				<%= u.label :category_ids %>
+				<%= u.label :category_ids, id: "categoryLabel" %>
 				<%= u.collection_select :category_ids, Category.all, :id, :name, {}, { :multiple => true} %>
 			</div>
 			<div class="form-group">
-				<%= u.submit "Submit", class: "btn btn-success"%>
+				<%= u.submit "Ok", class: "btn btn-success"%>
 			</div>
 
 		</div>
