@@ -18,13 +18,30 @@
 
 */
 
+$nomblue: #7DCDCD;
+
 @font-family-serif;
+
 
 body { padding-top: 65px;
 			 background-image: url("debut_light.png");
-			 // font-family: @font-family-sans-serif;
+			 color: #808080;
 			  }
 
 .backbutton img{
 	width: 33px;
+}
+
+.logo-text{
+	background-image: url("nomadets-logo.png");
+	width: 189px;
+	height: 122px;
+	background-position: 50px 4px;
+	background-size: 55%;
+	background-repeat: no-repeat;
+	margin-right: -20px;
+}
+
+.navbar{
+	// background-color: $nomblue;
 }

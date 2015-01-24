@@ -1,0 +1,27 @@
+$darkgrey: #777;
+
+#new_search{
+
+	select {
+		border: none;
+		background-color: tomato;
+		margin: 3% 0 3% 0;
+		height: 32px;
+		color: white;
+	}
+	.form-group{
+		display: table;
+	}
+
+	#countries_select{
+		margin-top: 3px;
+	}
+
+	#search_category_ids{
+		height: 120px;
+		background-color: white;
+		color: $darkgrey;
+		padding: 1%;
+		margin-left: 1%;
+	}
+}

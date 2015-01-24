@@ -16,11 +16,6 @@ $almostwhite: #F5F5F5;
 		color: $darkgrey;
 	}
 
-	.register-input{
-		width: 60%;
-		border: none;
-	}
-
 	select {
 		border: none;
 		background-color: tomato;
@@ -28,6 +23,12 @@ $almostwhite: #F5F5F5;
 		height: 32px;
 		color: white;
 	}
+	
+	.register-input{
+		width: 60%;
+		border: none;
+	}
+
 
 	#user_category_ids{
 		height: 120px;
@@ -50,14 +51,20 @@ $almostwhite: #F5F5F5;
 	.field input[type=file]{
 		position: absolute;
     top: -2px;
-    left: - 89px;
+    left: - 90px;
     color: $fontgrey;  
 	}
 
 	.btn-success{
-		color: $darkgrey;
+		color: tomato;
 		background-color: $almostwhite;
 		width: 238px;
+		font-weight: bold;
+		border-color: grey;
+		background-image: image-url("check.png");
+		background-repeat: no-repeat;
+		background-size: 10%;
+		background-position: 136px 8px;
 	}
 
 }
